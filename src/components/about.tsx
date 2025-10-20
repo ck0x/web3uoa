@@ -5,19 +5,13 @@ const features = [
     icon: Code2,
     title: "Learn & Build",
     description:
-      "Hands-on workshops covering blockchain fundamentals, smart contracts, and dApp development",
+      "Hands on workshops covering blockchain fundamentals and development with AI",
   },
   {
     icon: Users,
     title: "Community",
     description:
-      "Connect with like-minded students passionate about decentralised technology",
-  },
-  {
-    icon: Lightbulb,
-    title: "Innovation",
-    description:
-      "Explore cutting-edge Web3 projects and contribute to the decentralised ecosystem",
+      "Connect with like-minded and curious students exploring Web3 technologies",
   },
   {
     icon: Rocket,
@@ -40,7 +34,7 @@ export function About() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
