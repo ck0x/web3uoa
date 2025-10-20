@@ -5,7 +5,7 @@ import { Instagram, Linkedin } from "lucide-react";
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const [blurAmount, setBlurAmount] = useState(8); // Start with 8px initial blur
+  const [blurAmount, setBlurAmount] = useState(3); // Start with 3px initial blur
 
   useEffect(() => {
     let ticking = false;
@@ -34,6 +34,9 @@ export function Hero() {
         ticking = true;
       }
     };
+
+    // Set initial blur on mount
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -76,7 +79,7 @@ export function Hero() {
               University of Auckland Web3 Club
             </p>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Exploring the decentralized future through blockchain technology,
+              Exploring the decentralised future through blockchain technology,
               smart contracts, and Web3 innovation
             </p>
           </div>

@@ -11,13 +11,13 @@ const features = [
     icon: Users,
     title: "Community",
     description:
-      "Connect with like-minded students passionate about decentralized technology",
+      "Connect with like-minded students passionate about decentralised technology",
   },
   {
     icon: Lightbulb,
     title: "Innovation",
     description:
-      "Explore cutting-edge Web3 projects and contribute to the decentralized ecosystem",
+      "Explore cutting-edge Web3 projects and contribute to the decentralised ecosystem",
   },
   {
     icon: Rocket,
@@ -33,7 +33,7 @@ export function About() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-balance">
-            Building the Decentralized Future
+            Building the Decentralised Future
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Join New Zealand's leading university Web3 community

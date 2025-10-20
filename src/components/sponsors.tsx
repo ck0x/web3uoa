@@ -14,7 +14,7 @@ export function Sponsors() {
         <div className="max-w-3xl mx-auto text-center py-12">
           <div className="bg-card border border-border rounded-xl p-8 md:p-12">
             <p className="text-xl md:text-2xl text-muted-foreground mb-6">
-              We're currently finalizing partnerships for 2026
+              We're currently finalising partnerships for 2026
             </p>
             <p className="text-base text-muted-foreground/80">
               Exciting collaborations with industry leaders in blockchain and
