@@ -16,12 +16,12 @@ export function Footer() {
               <span className="text-xl font-bold">WEB3UOA</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              University of Auckland's premier Web3 and blockchain community
+              University of Auckland's Web3 community
             </p>
           </div>
 
           {/* Quick links */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h3 className="font-semibold">Quick Links</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
@@ -45,7 +45,7 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Social and contact */}
           <div className="space-y-4">

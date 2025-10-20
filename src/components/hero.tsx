@@ -79,8 +79,7 @@ export function Hero() {
               University of Auckland Web3 Club
             </p>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Exploring the decentralised future through blockchain technology,
-              smart contracts, and Web3 innovation
+              Bitcoin runs on Proof of Work, we run on Proof of Learn.
             </p>
           </div>
 

@@ -6,9 +6,6 @@ export function Sponsors() {
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
             Our Sponsors
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Check back soon to see our 2026 sponsors
-          </p>
         </div>
 
         <div className="max-w-3xl mx-auto text-center py-12">
