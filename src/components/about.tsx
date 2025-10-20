@@ -30,7 +30,7 @@ export function About() {
             Building the Decentralised Future
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Join New Zealand's leading university Web3 community
+            Join Auckland's leading university Web3 community
           </p>
         </div>
 
