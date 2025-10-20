@@ -5,7 +5,7 @@ import { Instagram, Linkedin } from "lucide-react";
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const [blurAmount, setBlurAmount] = useState(0);
+  const [blurAmount, setBlurAmount] = useState(8); // Start with 8px initial blur
 
   useEffect(() => {
     let ticking = false;
@@ -20,8 +20,10 @@ export function Hero() {
 
           const heroHeight = heroRef.current.offsetHeight;
           const scrollProgress = Math.min(scrolled / (heroHeight * 0.8), 1);
+          const initialBlur = 3; // Initial blur amount in pixels
           const maxBlur = 20; // Maximum blur in pixels
-          const calculatedBlur = scrollProgress * maxBlur;
+          const calculatedBlur =
+            initialBlur + scrollProgress * (maxBlur - initialBlur);
 
           setBlurAmount(calculatedBlur);
           bgRef.current.style.transform = `translate3d(0, ${
