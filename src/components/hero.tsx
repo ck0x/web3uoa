@@ -86,8 +86,14 @@ export function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Button size="lg" className="text-base px-8">
-              Join the Club
+            <Button size="lg" className="text-base px-8" asChild>
+              <a
+                href="https://forms.gle/vzRb7t46SPBUwi7v8"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join the Club!
+              </a>
             </Button>
             <Button
               size="lg"
