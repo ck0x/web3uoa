@@ -96,7 +96,7 @@ export function Hero() {
           {/* Social Links */}
           <div className="flex items-center gap-6 pt-8">
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/web3uoa"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -105,7 +105,7 @@ export function Hero() {
               <Instagram className="w-6 h-6" />
             </a>
             <a
-              href="https://x.com"
+              href="https://x.com/web3uoa"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -121,7 +121,7 @@ export function Hero() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/web3uoa-university-of-auckland-web3-club/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"

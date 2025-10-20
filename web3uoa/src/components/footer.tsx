@@ -52,7 +52,7 @@ export function Footer() {
             <h3 className="font-semibold">Connect With Us</h3>
             <div className="flex items-center gap-4">
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/web3uoa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -61,7 +61,7 @@ export function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://x.com"
+                href="https://x.com/web3uoa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -77,7 +77,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/web3uoa-university-of-auckland-web3-club/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -88,10 +88,10 @@ export function Footer() {
             </div>
             <p className="text-sm text-muted-foreground">
               <a
-                href="mailto:contact@web3uoa.com"
+                href="mailto:team@web3uoa.nz"
                 className="hover:text-primary transition-colors"
               >
-                contact@web3uoa.com
+                team@web3uoa.nz
               </a>
             </p>
           </div>

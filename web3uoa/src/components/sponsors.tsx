@@ -28,7 +28,7 @@ export function Sponsors() {
             Interested in sponsoring?
           </p>
           <a
-            href="mailto:contact@web3uoa.com"
+            href="mailto:team@web3uoa.nz"
             className="text-primary hover:text-primary/80 font-medium transition-colors"
           >
             Get in touch →
