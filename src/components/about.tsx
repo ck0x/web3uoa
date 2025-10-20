@@ -1,4 +1,4 @@
-import { Code2, Users, Lightbulb, Rocket } from "lucide-react";
+import { Code2, Users, Rocket } from "lucide-react";
 
 const features = [
   {
