@@ -2,73 +2,46 @@ import { Instagram, Linkedin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border py-16">
+    <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto md:items-start">
           {/* Logo and description */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="flex items-center gap-3">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Copy%20of%20web3logo%201-KTCJNbwKQyjY0Edgsb7MGl3P6zOYOf.png"
                 alt="WEB3UOA Logo"
-                className="w-10 h-10"
+                className="w-12 h-12"
               />
-              <span className="text-xl font-bold">WEB3UOA</span>
+              <span className="text-2xl font-bold tracking-tight">WEB3UOA</span>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              University of Auckland's Web3 community
+            <p className="text-background/70 leading-relaxed max-w-sm font-light">
+              Empowering the next generation of builders, shapers, and innovators at the University of Auckland.
             </p>
           </div>
 
-          {/* Quick links */}
-          {/* <div className="space-y-4">
-            <h3 className="font-semibold">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Events
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Resources
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div> */}
-
           {/* Social and contact */}
-          <div className="space-y-4">
-            <h3 className="font-semibold">Connect With Us</h3>
-            <div className="flex items-center gap-4">
+          <div className="space-y-6 md:text-right">
+            <h3 className="font-semibold text-lg tracking-wide">Connect With Us</h3>
+            <div className="flex items-center gap-6 md:justify-end">
               <a
                 href="https://instagram.com/web3uoa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-background/70 hover:text-primary transition-colors hover:scale-110 transform duration-200"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-6 h-6" />
               </a>
               <a
                 href="https://x.com/web3uoa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-background/70 hover:text-primary transition-colors hover:scale-110 transform duration-200"
                 aria-label="X (Twitter)"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
@@ -80,13 +53,13 @@ export function Footer() {
                 href="https://www.linkedin.com/company/web3uoa-university-of-auckland-web3-club/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-background/70 hover:text-primary transition-colors hover:scale-110 transform duration-200"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-6 h-6" />
               </a>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-background/70 font-light">
               <a
                 href="mailto:team@web3uoa.nz"
                 className="hover:text-primary transition-colors"
@@ -97,7 +70,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+        <div className="mt-16 pt-8 border-t border-background/10 text-center text-sm text-background/40 font-light">
           <p>© {new Date().getFullYear()} WEB3UOA. All rights reserved.</p>
         </div>
       </div>

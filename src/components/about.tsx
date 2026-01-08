@@ -5,50 +5,52 @@ const features = [
     icon: Code2,
     title: "Learn & Build",
     description:
-      "Hands on workshops covering blockchain fundamentals and development with AI",
+      "Hands-on workshops covering blockchain fundamentals, smart contract development, and integration with AI.",
   },
   {
     icon: Users,
     title: "Community",
     description:
-      "Connect with like-minded and curious students exploring Web3 technologies",
+      "Connect with a diverse network of students, alumni, and industry professionals passionate about Web3.",
   },
   {
     icon: Rocket,
     title: "Opportunities",
     description:
-      "Access internships, hackathons, and career opportunities in the Web3 space",
+      "Gain exclusive access to internships, hackathons, and career pathways in the evolving blockchain ecosystem.",
   },
 ];
 
 export function About() {
   return (
-    <section className="py-24 relative">
+    <section id="about" className="py-32 bg-secondary/30 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-balance">
+        <div className="text-center mb-20 space-y-6">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
             Building the Decentralised Future
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Join Auckland's leading university Web3 community
+          <p className="text-lg md:text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed font-light">
+            We are Auckland's premier student-led organization dedicated to blockchain education and innovation.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <div
                 key={index}
-                className="group relative bg-card border border-border rounded-xl p-6 hover:border-primary/50 hover:shadow-lg transition-all duration-300"
+                className="group flex flex-col items-center text-center space-y-6 p-6 rounded-2xl transition-colors hover:bg-background/80"
               >
-                <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <Icon className="w-6 h-6" />
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {feature.description}
-                </p>
+                <div className="space-y-3">
+                  <h3 className="text-xl font-semibold text-foreground tracking-tight">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
             );
           })}
