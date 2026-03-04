@@ -3,53 +3,35 @@ import { Handshake } from "lucide-react";
 
 export function Sponsors() {
   return (
-    <section id="partners" className="py-24 md:py-32 bg-secondary/30 relative">
+    <section id="partners" className="py-24 md:py-32 bg-background border-t border-border/50">
       <div className="container mx-auto px-4">
         {/* Section header */}
-        <div className="text-center mb-6 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
-            Partnerships
+        <div className="mb-16 space-y-4 max-w-2xl mx-auto text-center">
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+            03 / Partners
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
-            Our Partners
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground">
+            Our Sponsors
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Collaborating with industry leaders driving the future of Web3.
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Collaborating with industry leaders to drive the future of Web3.
           </p>
-        </div>
-
-        <div className="flex justify-center mb-14">
-          <div className="h-1 w-16 rounded-full bg-primary/30" />
         </div>
 
         {/* Coming soon placeholder */}
-        <div className="max-w-3xl mx-auto text-center py-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary mb-8">
-            <Handshake className="w-8 h-8" />
-          </div>
-          <p className="text-xl md:text-2xl text-foreground font-semibold mb-3">
-            2026 Partners
-          </p>
-          <p className="text-muted-foreground">To be announced soon.</p>
-        </div>
-
-        {/* CTA Card */}
-        <div className="mt-8 max-w-3xl mx-auto">
-          <div className="relative rounded-2xl bg-background border border-border/60 shadow-lg p-10 md:p-14 text-center overflow-hidden">
-            {/* Accent glow */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground relative z-10">
-              Interested in partnering with us?
-            </h3>
-            <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed mb-8 relative z-10">
-              Support the next generation of blockchain talent at the University
-              of Auckland.
+        <div className="max-w-2xl mx-auto w-full">
+          <div className="flex flex-col items-center justify-center py-16 px-4 bg-secondary rounded-3xl border border-border/50">
+            <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-muted-foreground mb-6 shadow-sm border border-border">
+              <Handshake className="w-8 h-8" />
+            </div>
+            <p className="text-2xl font-bold text-foreground mb-2">
+              2026 Partners
             </p>
-            <Button
-              className="rounded-full px-8 h-12 font-semibold shadow-md"
-              asChild
-            >
-              <a href="mailto:team@web3uoa.nz">Get in Touch</a>
+            <p className="text-muted-foreground mb-8 text-center max-w-sm">
+              We are finalizing our partnerships for the year. Check back soon.
+            </p>
+            <Button size="lg" className="rounded-xl font-bold" asChild>
+              <a href="mailto:team@web3uoa.nz">Become a Partner</a>
             </Button>
           </div>
         </div>

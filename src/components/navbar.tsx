@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
@@ -9,36 +9,19 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
+    <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent py-4 text-foreground">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
+        <a href="#" className="flex items-center gap-3 group">
           <img
             src="/logo/Non-Sticker-Logo-version.png"
             alt="WEB3UOA"
-            className="w-9 h-9 transition-transform group-hover:scale-105"
+            className="w-10 h-10 transition-transform duration-500 group-hover:scale-110 drop-shadow-sm"
           />
-          <span
-            className={`text-lg font-bold tracking-tight transition-colors ${
-              scrolled ? "text-foreground" : "text-white"
-            }`}
-          >
+          <span className="text-xl font-black tracking-tight">
             WEB3UOA
           </span>
         </a>
@@ -49,18 +32,14 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                scrolled
-                  ? "text-foreground/70"
-                  : "text-white/80 hover:text-white"
-              }`}
+              className="text-sm font-bold tracking-wide transition-colors text-foreground/80 hover:text-primary"
             >
               {link.label}
             </a>
           ))}
           <Button
             size="sm"
-            className="rounded-full px-5 font-semibold shadow-md hover:shadow-lg transition-all"
+            className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
             asChild
           >
             <a
@@ -76,38 +55,32 @@ export function Navbar() {
         {/* Mobile menu button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className={`md:hidden p-2 rounded-lg transition-colors ${
-            scrolled ? "text-foreground" : "text-white"
-          }`}
+          className="md:hidden p-2 rounded-lg text-foreground transition-colors hover:bg-secondary"
           aria-label="Toggle menu"
         >
           {mobileOpen ? (
-            <X className="w-5 h-5" />
+            <X className="w-6 h-6" />
           ) : (
-            <Menu className="w-5 h-5" />
+            <Menu className="w-6 h-6" />
           )}
         </button>
       </div>
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg">
-          <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-xl border-b border-border shadow-lg">
+          <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-sm font-medium text-foreground/70 hover:text-primary py-2 transition-colors"
+                className="text-base font-bold text-foreground/80 hover:text-primary py-2 transition-colors border-b border-border/50"
               >
                 {link.label}
               </a>
             ))}
-            <Button
-              size="sm"
-              className="rounded-full font-semibold mt-2 w-fit"
-              asChild
-            >
+            <Button size="lg" className="rounded-xl font-bold mt-4 w-full h-12" asChild>
               <a
                 href="https://forms.gle/vzRb7t46SPBUwi7v8"
                 target="_blank"

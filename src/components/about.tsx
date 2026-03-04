@@ -23,64 +23,44 @@ const features = [
 
 export function About() {
   return (
-    <section id="about" className="py-24 md:py-32 bg-background relative">
+    <section id="about" className="py-24 md:py-32 bg-background border-t border-border/50">
       <div className="container mx-auto px-4">
         {/* Section header */}
-        <div className="text-center mb-6 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
-            Who We Are
+        <div className="mb-16 space-y-4 max-w-2xl">
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+            01 / About
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground">
             Building the Decentralised Future
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground leading-relaxed">
             Auckland's premier student-led organisation dedicated to blockchain
-            education and innovation.
+            education and innovation. We bridge the gap between university
+            theory and industry-grade Web3 development.
           </p>
         </div>
 
-        {/* Divider */}
-        <div className="flex justify-center mb-16">
-          <div className="h-1 w-16 rounded-full bg-primary/30" />
-        </div>
-
-        {/* Two-column layout: features + image */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto items-center">
-          {/* Features */}
-          <div className="space-y-10">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <div key={index} className="group flex gap-5">
-                  <div className="shrink-0 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                    <Icon className="w-7 h-7" />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-bold text-foreground tracking-tight">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">
-                      {feature.description}
-                    </p>
-                  </div>
+        {/* Feature grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <div 
+                key={index} 
+                className="group flex flex-col p-8 rounded-3xl bg-secondary hover:bg-secondary/70 transition-colors border border-border/50"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-background flex items-center justify-center text-primary mb-6 shadow-sm border border-border/50 group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-6 h-6" />
                 </div>
-              );
-            })}
-          </div>
-
-          {/* Image */}
-          <div className="relative">
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="/images/GovDojo1.jpg"
-                alt="WEB3UOA GovDojo event"
-                className="w-full h-[400px] object-cover"
-              />
-            </div>
-            {/* Decorative accent */}
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-2xl -z-10" />
-            <div className="absolute -top-4 -left-4 w-16 h-16 bg-primary/5 rounded-xl -z-10" />
-          </div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -5,52 +5,43 @@ export function Footer() {
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4">
         {/* Main footer content */}
-        <div className="py-14 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        <div className="py-20 grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 max-w-7xl mx-auto">
           {/* Brand */}
-          <div className="space-y-5">
-            <div className="flex items-center gap-2.5">
+          <div className="space-y-6 md:col-span-2">
+            <div className="flex items-center gap-3">
               <img
                 src="/logo/Non-Sticker-Logo-version.png"
                 alt="WEB3UOA"
-                className="w-10 h-10"
+                className="w-10 h-10 brightness-0 invert"
               />
-              <span className="text-xl font-bold tracking-tight">WEB3UOA</span>
+              <span className="text-2xl font-black tracking-tight">WEB3UOA</span>
             </div>
-            <p className="text-background/60 leading-relaxed text-sm max-w-xs">
-              Empowering the next generation of builders, shapers, and
-              innovators at the University of Auckland.
+            <p className="text-background/70 leading-relaxed max-w-sm text-lg">
+              Empowering the next generation of builders, shapers, and innovators
+              at the University of Auckland.
             </p>
           </div>
 
           {/* Quick links */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-sm uppercase tracking-wider text-background/40">
+          <div className="space-y-6">
+            <h3 className="font-bold text-lg text-white">
               Navigate
             </h3>
-            <div className="flex flex-col gap-2.5">
-              <a
-                href="#about"
-                className="text-sm text-background/60 hover:text-white transition-colors w-fit"
-              >
+            <div className="flex flex-col gap-4">
+              <a href="#about" className="text-base text-background/70 hover:text-white transition-colors w-fit font-semibold">
                 About
               </a>
-              <a
-                href="#events"
-                className="text-sm text-background/60 hover:text-white transition-colors w-fit"
-              >
+              <a href="#events" className="text-base text-background/70 hover:text-white transition-colors w-fit font-semibold">
                 Events
               </a>
-              <a
-                href="#partners"
-                className="text-sm text-background/60 hover:text-white transition-colors w-fit"
-              >
+              <a href="#partners" className="text-base text-background/70 hover:text-white transition-colors w-fit font-semibold">
                 Partners
               </a>
               <a
                 href="https://forms.gle/vzRb7t46SPBUwi7v8"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-background/60 hover:text-white transition-colors w-fit"
+                className="text-base text-primary hover:text-primary/80 transition-colors w-fit font-bold"
               >
                 Join the Club
               </a>
@@ -58,16 +49,16 @@ export function Footer() {
           </div>
 
           {/* Connect */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-sm uppercase tracking-wider text-background/40">
+          <div className="space-y-6">
+            <h3 className="font-bold text-lg text-white">
               Connect
             </h3>
-            <div className="flex items-center gap-4">
+            <div className="flex gap-4">
               <a
                 href="https://instagram.com/web3uoa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-background/50 hover:text-white transition-colors hover:scale-110 transform duration-200"
+                className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center text-white hover:bg-primary transition-colors duration-300"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -76,11 +67,11 @@ export function Footer() {
                 href="https://x.com/web3uoa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-background/50 hover:text-white transition-colors hover:scale-110 transform duration-200"
+                className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center text-white hover:bg-primary transition-colors duration-300"
                 aria-label="X (Twitter)"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +83,7 @@ export function Footer() {
                 href="https://www.linkedin.com/company/web3uoa-university-of-auckland-web3-club/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-background/50 hover:text-white transition-colors hover:scale-110 transform duration-200"
+                className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center text-white hover:bg-primary transition-colors duration-300"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
@@ -100,7 +91,7 @@ export function Footer() {
             </div>
             <a
               href="mailto:team@web3uoa.nz"
-              className="text-sm text-background/60 hover:text-white transition-colors block w-fit"
+              className="text-base text-background/70 hover:text-white transition-colors block w-fit font-medium"
             >
               team@web3uoa.nz
             </a>
@@ -108,7 +99,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="py-6 border-t border-background/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-background/30">
+        <div className="py-8 border-t border-background/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-background/50 font-medium">
           <p>&copy; {new Date().getFullYear()} WEB3UOA. All rights reserved.</p>
           <p>University of Auckland Web3 Club</p>
         </div>
