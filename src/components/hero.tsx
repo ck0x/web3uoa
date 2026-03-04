@@ -1,45 +1,56 @@
 import { Button } from "@/components/ui/button";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin, ArrowDown } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
-      {/* Abstract professional background element - kept subtle but present to avoid barrenness */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-[900px] h-[900px] bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 opacity-60" />
-        <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-secondary/80 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background event photo */}
+      <div className="absolute inset-0">
+        <img
+          src="/images/Launchnight1.jpg"
+          alt="WEB3UOA Launch Night"
+          className="w-full h-full object-cover"
+        />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+        {/* Subtle blue accent glow */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/15 rounded-full blur-[120px]" />
       </div>
 
-      <div className="container relative z-10 px-4 py-20">
-        <div className="flex flex-col items-center text-center space-y-12">
-          <div className="animate-in fade-in zoom-in duration-500 bg-white/50 p-8 rounded-full backdrop-blur-sm border border-white/20 shadow-sm">
+      <div className="container relative z-10 px-4 pt-24 pb-16">
+        <div className="flex flex-col items-center text-center space-y-10">
+          {/* Logo */}
+          <div className="animate-in fade-in zoom-in duration-700">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Copy%20of%20web3logo%201-KTCJNbwKQyjY0Edgsb7MGl3P6zOYOf.png"
+              src="/logo/Non-Sticker-Logo-version.png"
               alt="WEB3UOA Logo"
-              className="w-36 h-36 md:w-48 md:h-48"
+              className="w-28 h-28 md:w-36 md:h-36 drop-shadow-2xl"
             />
           </div>
 
           {/* Hero text */}
-          <div className="space-y-8 max-w-5xl">
-            <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-foreground leading-tight drop-shadow-sm">
+          <div className="space-y-6 max-w-4xl animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+            <h1 className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tight text-white leading-[1.05] drop-shadow-lg">
               WEB3UOA
             </h1>
-            <p className="text-2xl md:text-4xl text-primary font-semibold tracking-wide">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/80 font-medium tracking-wide">
               University of Auckland Web3 Club
             </p>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
               Educating the next generation of blockchain innovators.
-              <br />
-              <span className="text-base font-bold uppercase tracking-[0.25em] mt-4 block text-foreground/70">
-                Proof of Learn
-              </span>
             </p>
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] text-primary/80 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
+              Proof of Learn
+            </span>
           </div>
 
-          {/* CTA Buttons - Bigger */}
-          <div className="flex flex-col sm:flex-row items-center gap-6">
-            <Button size="lg" className="text-lg px-10 h-16 shadow-xl hover:shadow-2xl transition-all bg-primary hover:bg-primary/90 text-white font-bold rounded-full" asChild>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+            <Button
+              size="lg"
+              className="text-base px-8 h-14 shadow-xl hover:shadow-2xl transition-all bg-primary hover:bg-primary/90 text-white font-bold rounded-full"
+              asChild
+            >
               <a
                 href="https://forms.gle/vzRb7t46SPBUwi7v8"
                 target="_blank"
@@ -48,33 +59,36 @@ export function Hero() {
                 Join the Club
               </a>
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-10 h-16 border-2 border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-all font-semibold rounded-full bg-white/80 backdrop-blur-sm shadow-sm" asChild>
-              <a href="#about">
-                Learn More
-              </a>
+            <Button
+              variant="outline"
+              size="lg"
+              className="text-base px-8 h-14 border-2 border-white/20 hover:bg-white/10 hover:border-white/40 transition-all font-semibold rounded-full bg-white/5 backdrop-blur-sm text-white"
+              asChild
+            >
+              <a href="#about">Learn More</a>
             </Button>
           </div>
 
-          {/* Social Links - Bigger */}
-          <div className="flex items-center gap-10 pt-10">
+          {/* Social Links */}
+          <div className="flex items-center gap-8 pt-6 animate-in fade-in duration-700 delay-500">
             <a
               href="https://instagram.com/web3uoa"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors transform hover:scale-110 duration-200"
+              className="text-white/50 hover:text-white transition-colors transform hover:scale-110 duration-200"
               aria-label="Instagram"
             >
-              <Instagram className="w-9 h-9" />
+              <Instagram className="w-6 h-6" />
             </a>
             <a
               href="https://x.com/web3uoa"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors transform hover:scale-110 duration-200"
+              className="text-white/50 hover:text-white transition-colors transform hover:scale-110 duration-200"
               aria-label="X (Twitter)"
             >
               <svg
-                className="w-9 h-9"
+                className="w-6 h-6"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
@@ -86,13 +100,23 @@ export function Hero() {
               href="https://www.linkedin.com/company/web3uoa-university-of-auckland-web3-club/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors transform hover:scale-110 duration-200"
+              className="text-white/50 hover:text-white transition-colors transform hover:scale-110 duration-200"
               aria-label="LinkedIn"
             >
-              <Linkedin className="w-9 h-9" />
+              <Linkedin className="w-6 h-6" />
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+        <a
+          href="#about"
+          className="text-white/40 hover:text-white/70 transition-colors"
+        >
+          <ArrowDown className="w-5 h-5" />
+        </a>
       </div>
     </section>
   );
