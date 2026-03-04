@@ -23,34 +23,41 @@ const features = [
 
 export function About() {
   return (
-    <section id="about" className="py-32 bg-secondary/30 relative">
+    <section id="about" className="py-24 md:py-32 bg-background border-t border-border/50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-20 space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+        {/* Section header */}
+        <div className="mb-16 space-y-4 max-w-2xl">
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+            01 / About
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground">
             Building the Decentralised Future
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed font-light">
-            We are Auckland's premier student-led organization dedicated to blockchain education and innovation.
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Auckland's premier student-led organisation dedicated to blockchain
+            education and innovation. We bridge the gap between university
+            theory and industry-grade Web3 development.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        {/* Feature grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div
-                key={index}
-                className="group flex flex-col items-center text-center space-y-6 p-6 rounded-2xl transition-colors hover:bg-background/80"
+              <div 
+                key={index} 
+                className="group flex flex-col p-8 rounded-3xl bg-secondary hover:bg-secondary/70 transition-colors border border-border/50"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <Icon className="w-8 h-8" />
+                <div className="w-14 h-14 rounded-2xl bg-background flex items-center justify-center text-primary mb-6 shadow-sm border border-border/50 group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-6 h-6" />
                 </div>
-                <div className="space-y-3">
-                  <h3 className="text-xl font-semibold text-foreground tracking-tight">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
             );
           })}
