@@ -59,7 +59,9 @@ export function EnsClaim() {
       } catch (parseError) {
         // Response is not JSON (likely HTML error page)
         console.error("Response is not JSON:", res.status, res.statusText);
-        setError("Server error: unable to process request. Check browser console.");
+        setError(
+          "Server error: unable to process request. Check browser console.",
+        );
         setLoading(false);
         return;
       }
