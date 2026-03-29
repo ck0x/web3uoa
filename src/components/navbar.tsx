@@ -59,7 +59,6 @@ export function Navbar() {
               Admin Panel
             </a>
           )}
-          <appkit-button balance="hide" />
           <Button
             size="sm"
             className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
@@ -113,18 +112,7 @@ export function Navbar() {
               </a>
             )}
             <div className="flex justify-center py-2">
-              {mounted && isConnected ? (
-                <appkit-button balance="hide" />
-              ) : (
-                <Button
-                  onClick={() => open()}
-                  variant="outline"
-                  className="rounded-xl px-4 py-5 w-full font-bold shadow-sm hover:bg-primary hover:text-primary-foreground transition-all flex justify-center items-center gap-2"
-                >
-                  <Wallet className="w-4 h-4" />
-                  Connect Wallet
-                </Button>
-              )}
+              <appkit-button balance="hide" />
             </div>
             <Button
               size="lg"
