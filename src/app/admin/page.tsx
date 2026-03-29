@@ -8,11 +8,16 @@ export default function AdminPage() {
   const { address, isConnected } = useAccount();
   const { signMessageAsync } = useSignMessage();
   const [authHeader, setAuthHeader] = useState<any>(null);
+  const [mounted, setMounted] = useState(false);
 
   const [claims, setClaims] = useState<any[]>([]);
   const [activeNames, setActiveNames] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const authenticate = async () => {
     if (!address) return;
@@ -111,6 +116,14 @@ export default function AdminPage() {
       alert(err.message);
     }
   };
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen py-24 flex items-center justify-center container mx-auto px-4" suppressHydrationWarning>
+        <p className="text-foreground/70">Loading...</p>
+      </div>
+    );
+  }
 
   if (!isConnected) {
     return (
