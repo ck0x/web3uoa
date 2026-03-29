@@ -28,7 +28,7 @@ export default function Home() {
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                 Ditch the long standard wallet addresses. Claim your
-                personalized, readable Web3 identity, exclusive to University of
+                personalised, readable Web3 identity, exclusive to University of
                 Auckland Web3 Club members.
               </p>
 
