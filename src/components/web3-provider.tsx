@@ -9,9 +9,15 @@ import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 
 const queryClient = new QueryClient();
 
+const normalizeProjectId = (value?: string) => {
+  if (!value) return undefined;
+  const trimmed = value.trim();
+  return trimmed.replace(/^['\"]+|['\"]+$/g, "");
+};
+
 export const projectId =
-  process.env.NEXT_PUBLIC_REOWN_PROJECT_ID ||
-  "b56e464e047eb0eec49e49ebef52a8a8"; // replace with actual when known
+  normalizeProjectId(process.env.NEXT_PUBLIC_REOWN_PROJECT_ID) ||
+  "b56e464e047eb0eec49e49ebef52a8a8"; // fallback for local development
 
 export const networks = [mainnet, sepolia];
 
