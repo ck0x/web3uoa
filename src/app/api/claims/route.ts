@@ -53,10 +53,23 @@ export async function POST(req: NextRequest) {
           { status: 400 },
         );
       }
-    } catch (dbError) {
+    } catch (dbError: any) {
       console.error("Database error in findFirst:", dbError);
+      if (dbError?.code === "P2021") {
+        return NextResponse.json(
+          {
+            error:
+              "Database schema is not initialized (ClaimRequest table missing).",
+          },
+          { status: 500 },
+        );
+      }
       return NextResponse.json(
-        { error: "Database error: unable to check existing claims" },
+        {
+          error:
+            dbError?.message ||
+            "Database error: unable to check existing claims",
+        },
         { status: 500 },
       );
     }
