@@ -91,7 +91,7 @@ export function EnsClaim() {
           Connect your wallet to reserve your subname.
         </p>
         <div className="flex justify-center">
-          <appkit-button />
+          <appkit-button balance="hide" />
         </div>
       </div>
     );

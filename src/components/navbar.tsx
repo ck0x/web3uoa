@@ -58,7 +58,7 @@ export function Navbar() {
               Admin Panel
             </a>
           )}
-          <appkit-button />
+          <appkit-button balance="hide" />
           <Button
             size="sm"
             className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
@@ -112,7 +112,7 @@ export function Navbar() {
               </a>
             )}
             <div className="flex justify-center py-2">
-              <appkit-button />
+              <appkit-button balance="hide" />
             </div>
             <Button
               size="lg"
