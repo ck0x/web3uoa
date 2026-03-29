@@ -11,12 +11,12 @@ export default function Home() {
       <Hero />
 
       {/* ENS Subname Claim Section */}
-      <section className="py-20 bg-secondary/20 border-b border-border/50 relative overflow-hidden">
+      <section id="identity" className="min-h-[80vh] flex flex-col justify-center py-20 bg-secondary/20 border-b border-border/50 relative overflow-hidden">
         {/* Abstract background blobs for styling */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse animation-delay-2000" />
 
-        <div className="container relative z-10 px-4">
+        <div className="container mx-auto relative z-10 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6">

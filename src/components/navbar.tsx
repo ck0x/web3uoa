@@ -8,6 +8,7 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Events", href: "#events" },
   { label: "Partners", href: "#partners" },
+  { label: "Web3 ID", href: "#identity" },
 ];
 
 export function Navbar() {
@@ -112,7 +113,14 @@ export function Navbar() {
               </a>
             )}
             <div className="flex justify-center py-2">
-              <appkit-button balance="hide" />
+              {mounted && isConnected ? (
+                <appkit-button balance="hide" />
+              ) : (
+                <Button onClick={() => open()} variant="outline" className="rounded-xl px-4 py-5 w-full font-bold shadow-sm hover:bg-primary hover:text-primary-foreground transition-all flex justify-center items-center gap-2">
+                  <Wallet className="w-4 h-4" />
+                  Connect Wallet
+                </Button>
+              )}
             </div>
             <Button
               size="lg"

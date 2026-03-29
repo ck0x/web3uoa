@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useAccount } from "wagmi";
+import { useAppKit } from "@reown/appkit/react";
+import { Wallet } from "lucide-react";
 import { Button } from "./ui/button";
 
 interface Claim {
@@ -12,6 +14,7 @@ interface Claim {
 
 export function EnsClaim() {
   const { address, isConnected } = useAccount();
+  const { open } = useAppKit();
   const [requestedName, setRequestedName] = useState("");
   const [claims, setClaims] = useState<Claim[]>([]);
   const [loading, setLoading] = useState(false);
@@ -91,7 +94,10 @@ export function EnsClaim() {
           Connect your wallet to reserve your subname.
         </p>
         <div className="flex justify-center">
-          <appkit-button balance="hide" />
+          <Button onClick={() => open()} variant="outline" className="rounded-xl px-6 py-5 font-bold shadow-sm hover:bg-primary hover:text-primary-foreground transition-all flex items-center gap-2">
+            <Wallet className="w-5 h-5" />
+            Connect Wallet
+          </Button>
         </div>
       </div>
     );

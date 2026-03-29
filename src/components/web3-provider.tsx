@@ -28,7 +28,7 @@ createAppKit({
   projectId,
   featuredWalletIds: [
     // MetaMask wallet id in Reown WalletGuide.
-    "eebe4a7f-7166-402f-92e0-1f64ca2aa800",
+    "1ae92b26df02f0abca6304df07debccd18262fdf5fe82daa81593582dac9a369",
   ],
   allWallets: "SHOW",
   enableWalletGuide: false,
