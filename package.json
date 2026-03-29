@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && npm run prisma:sync && next build",
-    "prisma:sync": "prisma db push",
+    "prisma:sync": "node scripts/prisma-sync.mjs",
     "postinstall": "prisma generate",
     "lint": "eslint .",
     "preview": "vite preview",

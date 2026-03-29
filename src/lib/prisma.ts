@@ -2,12 +2,34 @@ import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 
+const normalizeDatabaseUrl = (value?: string) => {
+  if (!value) return undefined;
+  return value.trim().replace(/^['\"]+|['\"]+$/g, "");
+};
+
 const prismaClientSingleton = () => {
-  if (!process.env.DATABASE_URL) {
+  const databaseUrl = normalizeDatabaseUrl(process.env.DATABASE_URL);
+
+  if (!databaseUrl) {
     throw new Error("DATABASE_URL environment variable is not set");
   }
 
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  let protocol: string;
+  try {
+    protocol = new URL(databaseUrl).protocol;
+  } catch {
+    throw new Error(
+      "DATABASE_URL is invalid. Check for extra quotes or invalid characters.",
+    );
+  }
+
+  if (protocol !== "postgresql:" && protocol !== "postgres:") {
+    throw new Error(
+      "DATABASE_URL must start with postgresql:// or postgres://",
+    );
+  }
+
+  const pool = new Pool({ connectionString: databaseUrl });
   const adapter = new PrismaPg(pool);
   const client = new PrismaClient({ adapter });
   return client;

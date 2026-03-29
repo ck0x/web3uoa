@@ -18,11 +18,13 @@ export async function GET(req: NextRequest) {
     });
 
     return NextResponse.json({ claims });
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Failed to fetch claims" },
-      { status: 500 },
-    );
+  } catch (error: any) {
+    console.error("Database error in GET /api/claims:", error);
+    const message =
+      error?.code === "P2021"
+        ? "Database schema is not initialized (ClaimRequest table missing)."
+        : error?.message || "Failed to fetch claims";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
 
