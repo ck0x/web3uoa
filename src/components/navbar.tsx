@@ -1,4 +1,5 @@
-import { useState } from "react";
+"use client";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
@@ -21,9 +22,7 @@ export function Navbar() {
             alt="WEB3UOA"
             className="w-10 h-10 transition-transform duration-500 group-hover:scale-110 drop-shadow-sm"
           />
-          <span className="text-xl font-black tracking-tight">
-            WEB3UOA
-          </span>
+          <span className="text-xl font-black tracking-tight">WEB3UOA</span>
         </a>
 
         {/* Desktop links */}
@@ -80,7 +79,11 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            <Button size="lg" className="rounded-xl font-bold mt-4 w-full h-12" asChild>
+            <Button
+              size="lg"
+              className="rounded-xl font-bold mt-4 w-full h-12"
+              asChild
+            >
               <a
                 href="https://forms.gle/vzRb7t46SPBUwi7v8"
                 target="_blank"
