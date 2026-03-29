@@ -39,38 +39,55 @@ export async function POST(req: NextRequest) {
     }
 
     // Check if they already have an approved or pending claim
-    const existing = await prisma.claimRequest.findFirst({
-      where: {
-        walletAddress: walletAddress.toLowerCase(),
-        status: { in: ["PENDING", "APPROVED"] },
-      },
-    });
+    try {
+      const existing = await prisma.claimRequest.findFirst({
+        where: {
+          walletAddress: walletAddress.toLowerCase(),
+          status: { in: ["PENDING", "APPROVED"] },
+        },
+      });
 
-    if (existing) {
+      if (existing) {
+        return NextResponse.json(
+          { error: `You already have a ${existing.status} claim.` },
+          { status: 400 },
+        );
+      }
+    } catch (dbError) {
+      console.error("Database error in findFirst:", dbError);
       return NextResponse.json(
-        { error: `You already have a ${existing.status} claim.` },
-        { status: 400 },
+        { error: "Database error: unable to check existing claims" },
+        { status: 500 },
       );
     }
 
     // Create the claim
-    const claim = await prisma.claimRequest.create({
-      data: {
-        walletAddress: walletAddress.toLowerCase(),
-        requestedName: requestedName.toLowerCase(),
-      },
-    });
+    try {
+      const claim = await prisma.claimRequest.create({
+        data: {
+          walletAddress: walletAddress.toLowerCase(),
+          requestedName: requestedName.toLowerCase(),
+        },
+      });
 
-    return NextResponse.json({ claim }, { status: 201 });
-  } catch (error: any) {
-    if (error.code === "P2002") {
+      return NextResponse.json({ claim }, { status: 201 });
+    } catch (createError: any) {
+      console.error("Database error in create:", createError);
+      if (createError.code === "P2002") {
+        return NextResponse.json(
+          { error: "You already have a request with this status." },
+          { status: 400 },
+        );
+      }
       return NextResponse.json(
-        { error: "You already have a request with this status." },
-        { status: 400 },
+        { error: `Database error: ${createError.message}` },
+        { status: 500 },
       );
     }
+  } catch (error: any) {
+    console.error("API error:", error);
     return NextResponse.json(
-      { error: "Failed to create claim" },
+      { error: `API error: ${error.message}` },
       { status: 500 },
     );
   }

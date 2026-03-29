@@ -53,7 +53,17 @@ export function EnsClaim() {
         body: JSON.stringify({ walletAddress: address, requestedName }),
       });
 
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (parseError) {
+        // Response is not JSON (likely HTML error page)
+        console.error("Response is not JSON:", res.status, res.statusText);
+        setError("Server error: unable to process request. Check browser console.");
+        setLoading(false);
+        return;
+      }
+
       if (!res.ok) {
         throw new Error(data.error || "Failed to submit claim.");
       }
