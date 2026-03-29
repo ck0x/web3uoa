@@ -84,7 +84,7 @@ export function Hero() {
           {/* Logo element (right side) */}
           <div className="flex-1 flex justify-center lg:justify-end items-center relative">
             {/* The cube effect */}
-            <div className="relative group w-64 h-64 md:w-96 md:h-96">
+            <a href="#identity" className="relative group w-64 h-64 md:w-96 md:h-96 block cursor-pointer" title="Claim your Web3 ID!">
               {/* Back subtle shadow */}
               <div className="absolute inset-0 bg-primary/10 rounded-full blur-[100px] transition-all duration-700 group-hover:bg-primary/20" />
 
@@ -96,7 +96,7 @@ export function Hero() {
                   filter: "drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))",
                 }}
               />
-            </div>
+            </a>
           </div>
         </div>
       </div>
