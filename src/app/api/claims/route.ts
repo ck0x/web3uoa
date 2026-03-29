@@ -53,8 +53,7 @@ export async function POST(req: NextRequest) {
     if (existingApprovedName) {
       return NextResponse.json(
         {
-          error:
-            "That subname is already assigned. Please try a different subname.",
+          error: "That subname is already assigned.",
         },
         { status: 400 },
       );

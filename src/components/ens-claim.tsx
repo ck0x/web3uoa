@@ -81,7 +81,9 @@ export function EnsClaim() {
         typeof err?.message === "string" &&
         err.message.toLowerCase().includes("already assigned")
       ) {
-        setError(`${err.message} Try a different subname and submit again.`);
+        setError(
+          `${err.message} Please try a different subname and submit again.`,
+        );
       } else {
         setError(err.message);
       }
