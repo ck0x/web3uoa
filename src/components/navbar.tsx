@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useAccount } from "wagmi";
+import { isAllowedAdminAddress } from "@/lib/admin-auth";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -20,12 +21,7 @@ export function Navbar() {
     setMounted(true);
   }, []);
 
-  const adminAddress = process.env.NEXT_PUBLIC_ADMIN_ADDRESS?.toLowerCase();
-  const isAdmin =
-    mounted &&
-    Boolean(address) &&
-    Boolean(adminAddress) &&
-    address?.toLowerCase() === adminAddress;
+  const isAdmin = mounted && isAllowedAdminAddress(address);
 
   return (
     <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent py-4 text-foreground">

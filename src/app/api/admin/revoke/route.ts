@@ -2,15 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { deleteName } from "@/lib/namestone";
 import { verifyMessage } from "viem";
-
-const ADMIN_ADDRESS = process.env.NEXT_PUBLIC_ADMIN_ADDRESS?.toLowerCase();
+import { isAllowedAdminAddress } from "@/lib/admin-auth";
 
 async function verifyAdminAuth(req: NextRequest) {
   const address = req.headers.get("x-admin-address")?.toLowerCase();
   const signature = req.headers.get("x-admin-signature");
   const timestamp = req.headers.get("x-admin-timestamp");
 
-  if (!address || !signature || !timestamp || address !== ADMIN_ADDRESS)
+  if (!address || !signature || !timestamp || !isAllowedAdminAddress(address))
     return false;
   if (Date.now() - parseInt(timestamp) > 5 * 60 * 1000) return false;
 
