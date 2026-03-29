@@ -1,7 +1,7 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiProvider, createConfig, http } from "wagmi";
+import { WagmiProvider } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
 import { ReactNode } from "react";
 import { createAppKit } from "@reown/appkit/react";
@@ -26,8 +26,18 @@ createAppKit({
   adapters: [wagmiAdapter],
   networks: [mainnet, sepolia],
   projectId,
+  featuredWalletIds: [
+    // MetaMask wallet id in Reown WalletGuide.
+    "eebe4a7f-7166-402f-92e0-1f64ca2aa800",
+  ],
+  allWallets: "SHOW",
+  enableWalletGuide: false,
   features: {
     analytics: true,
+    email: false,
+    socials: false,
+    connectMethodsOrder: ["wallet"],
+    connectorTypeOrder: ["featured"],
   },
 });
 
