@@ -119,7 +119,10 @@ export default function AdminPage() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen py-24 flex items-center justify-center container mx-auto px-4" suppressHydrationWarning>
+      <div
+        className="min-h-screen py-24 flex items-center justify-center container mx-auto px-4"
+        suppressHydrationWarning
+      >
         <p className="text-foreground/70">Loading...</p>
       </div>
     );
