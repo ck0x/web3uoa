@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
 import { useAppKit } from "@reown/appkit/react";
 import { Wallet } from "lucide-react";
 import { Button } from "./ui/button";
@@ -14,6 +14,7 @@ interface Claim {
 
 export function EnsClaim() {
   const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
   const { open } = useAppKit();
   const [requestedName, setRequestedName] = useState("");
   const [claims, setClaims] = useState<Claim[]>([]);
@@ -113,9 +114,19 @@ export function EnsClaim() {
 
   return (
     <div className="w-full max-w-md mx-auto p-6 bg-secondary/50 rounded-2xl border border-border mt-8 backdrop-blur-sm shadow-xl">
-      <h3 className="text-2xl font-bold mb-2 tracking-tight">
-        Claim a web3uoa.eth name
-      </h3>
+      <div className="flex items-start justify-between gap-3 mb-2">
+        <h3 className="text-2xl font-bold tracking-tight">
+          Claim a web3uoa.eth name
+        </h3>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => disconnect()}
+          className="rounded-lg border-border/70"
+        >
+          Disconnect
+        </Button>
+      </div>
       <p className="text-foreground/80 mb-6 text-sm">
         Enter the username you'd like to use. Admins will review and approve.
       </p>
