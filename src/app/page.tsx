@@ -11,7 +11,10 @@ export default function Home() {
       <Hero />
 
       {/* ENS Subname Claim Section */}
-      <section id="identity" className="min-h-[80vh] flex flex-col justify-center py-20 bg-secondary/20 border-b border-border/50 relative overflow-hidden">
+      <section
+        id="identity"
+        className="min-h-[80vh] flex flex-col justify-center py-20 bg-secondary/20 border-b border-border/50 relative overflow-hidden"
+      >
         {/* Abstract background blobs for styling */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse animation-delay-2000" />
@@ -57,7 +60,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative max-w-md mx-auto">
               {/* Highlight behind the claim box */}
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-blue-500/20 to-purple-500/20 rounded-[2rem] blur-xl opacity-50" />
               <EnsClaim />

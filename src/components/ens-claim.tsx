@@ -94,7 +94,11 @@ export function EnsClaim() {
           Connect your wallet to reserve your subname.
         </p>
         <div className="flex justify-center">
-          <Button onClick={() => open()} variant="outline" className="rounded-xl px-6 py-5 font-bold shadow-sm hover:bg-primary hover:text-primary-foreground transition-all flex items-center gap-2">
+          <Button
+            onClick={() => open()}
+            variant="outline"
+            className="rounded-xl px-6 py-5 font-bold shadow-sm hover:bg-primary hover:text-primary-foreground transition-all flex items-center gap-2"
+          >
             <Wallet className="w-5 h-5" />
             Connect Wallet
           </Button>
@@ -127,7 +131,7 @@ export function EnsClaim() {
           <div className="flex items-center gap-2">
             <input
               type="text"
-              placeholder="alice"
+              placeholder="vitalik"
               value={requestedName}
               onChange={(e) =>
                 setRequestedName(

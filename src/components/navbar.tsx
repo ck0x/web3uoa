@@ -8,7 +8,7 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Events", href: "#events" },
   { label: "Partners", href: "#partners" },
-  { label: "Web3 ID", href: "#identity" },
+  { label: "Claim your Web3 ID!", href: "#identity", isCTA: true },
 ];
 
 export function Navbar() {
@@ -46,7 +46,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-bold tracking-wide transition-colors text-foreground/80 hover:text-primary"
+              className={`text-sm font-bold tracking-wide transition-all ${link.isCTA ? "text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20 hover:bg-primary/20 hover:-translate-y-0.5 shadow-sm" : "text-foreground/80 hover:text-primary"}`}
             >
               {link.label}
             </a>
@@ -98,7 +98,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-base font-bold text-foreground/80 hover:text-primary py-2 transition-colors border-b border-border/50"
+                className={`text-base font-bold py-2 transition-colors border-b border-border/50 ${link.isCTA ? "text-primary" : "text-foreground/80 hover:text-primary"}`}
               >
                 {link.label}
               </a>
@@ -116,7 +116,11 @@ export function Navbar() {
               {mounted && isConnected ? (
                 <appkit-button balance="hide" />
               ) : (
-                <Button onClick={() => open()} variant="outline" className="rounded-xl px-4 py-5 w-full font-bold shadow-sm hover:bg-primary hover:text-primary-foreground transition-all flex justify-center items-center gap-2">
+                <Button
+                  onClick={() => open()}
+                  variant="outline"
+                  className="rounded-xl px-4 py-5 w-full font-bold shadow-sm hover:bg-primary hover:text-primary-foreground transition-all flex justify-center items-center gap-2"
+                >
                   <Wallet className="w-4 h-4" />
                   Connect Wallet
                 </Button>
