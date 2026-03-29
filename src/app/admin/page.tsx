@@ -137,7 +137,7 @@ export default function AdminPage() {
             Connect owner wallet to access.
           </p>
           <div className="flex justify-center">
-            <appkit-button />
+            <appkit-button balance="hide" />
           </div>
         </div>
       </div>
