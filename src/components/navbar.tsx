@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useAccount } from "wagmi";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -11,6 +12,19 @@ const navLinks = [
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { address } = useAccount();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const adminAddress = process.env.NEXT_PUBLIC_ADMIN_ADDRESS?.toLowerCase();
+  const isAdmin =
+    mounted &&
+    Boolean(address) &&
+    Boolean(adminAddress) &&
+    address?.toLowerCase() === adminAddress;
 
   return (
     <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent py-4 text-foreground">
@@ -36,6 +50,15 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
+          {isAdmin && (
+            <a
+              href="/admin"
+              className="text-sm font-bold tracking-wide transition-colors text-yellow-500 hover:text-yellow-400"
+            >
+              Admin Panel
+            </a>
+          )}
+          <appkit-button />
           <Button
             size="sm"
             className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
@@ -79,6 +102,18 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
+            {isAdmin && (
+              <a
+                href="/admin"
+                onClick={() => setMobileOpen(false)}
+                className="text-base font-bold text-yellow-500 hover:text-yellow-400 py-2 transition-colors border-b border-border/50"
+              >
+                Admin Panel
+              </a>
+            )}
+            <div className="flex justify-center py-2">
+              <appkit-button />
+            </div>
             <Button
               size="lg"
               className="rounded-xl font-bold mt-4 w-full h-12"

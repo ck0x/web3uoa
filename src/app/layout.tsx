@@ -5,8 +5,8 @@ import { Footer } from "@/components/footer";
 import { Web3Provider } from "@/components/web3-provider";
 
 export const metadata: Metadata = {
-  title: "Web3UOA",
-  description: "University of Auckland Blockchain Club",
+  title: "WEB3UOA - University of Auckland Web3 Club",
+  description: "Educating the next generation of blockchain innovators.",
 };
 
 export default function RootLayout({
