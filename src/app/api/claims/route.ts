@@ -32,6 +32,8 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { walletAddress, requestedName } = body;
+    const normalizedWalletAddress = walletAddress?.toLowerCase();
+    const normalizedRequestedName = requestedName?.toLowerCase();
 
     if (!walletAddress || !requestedName) {
       return NextResponse.json(
@@ -40,11 +42,29 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Prevent assigning a subname that already belongs to someone.
+    const existingApprovedName = await prisma.claimRequest.findFirst({
+      where: {
+        requestedName: normalizedRequestedName,
+        status: "APPROVED",
+      },
+    });
+
+    if (existingApprovedName) {
+      return NextResponse.json(
+        {
+          error:
+            "That subname is already assigned. Please try a different subname.",
+        },
+        { status: 400 },
+      );
+    }
+
     // Check if they already have an approved or pending claim
     try {
       const existing = await prisma.claimRequest.findFirst({
         where: {
-          walletAddress: walletAddress.toLowerCase(),
+          walletAddress: normalizedWalletAddress,
           status: { in: ["PENDING", "APPROVED"] },
         },
       });
@@ -80,8 +100,8 @@ export async function POST(req: NextRequest) {
     try {
       const claim = await prisma.claimRequest.create({
         data: {
-          walletAddress: walletAddress.toLowerCase(),
-          requestedName: requestedName.toLowerCase(),
+          walletAddress: normalizedWalletAddress,
+          requestedName: normalizedRequestedName,
         },
       });
 

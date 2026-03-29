@@ -77,7 +77,14 @@ export function EnsClaim() {
       setRequestedName("");
       fetchClaims();
     } catch (err: any) {
-      setError(err.message);
+      if (
+        typeof err?.message === "string" &&
+        err.message.toLowerCase().includes("already assigned")
+      ) {
+        setError(`${err.message} Try a different subname and submit again.`);
+      } else {
+        setError(err.message);
+      }
     } finally {
       setLoading(false);
     }
