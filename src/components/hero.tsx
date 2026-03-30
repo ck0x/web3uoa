@@ -84,12 +84,16 @@ export function Hero() {
           {/* Logo element (right side) */}
           <div className="flex-1 flex justify-center lg:justify-end items-center relative">
             {/* The cube effect */}
-            <a href="#identity" className="relative group w-64 h-64 md:w-96 md:h-96 block cursor-pointer" title="Claim your Web3 ID!">
+            <a
+              href="#identity"
+              className="relative group w-64 h-64 md:w-96 md:h-96 block cursor-pointer"
+              title="Claim your Web3 ID!"
+            >
               {/* Back subtle shadow */}
               <div className="absolute inset-0 bg-primary/10 rounded-full blur-[100px] transition-all duration-700 group-hover:bg-primary/20" />
 
               <img
-                src="/logo/Non-Sticker-Logo-version.png"
+                src="/logo/web3uoa_logo.png"
                 alt="WEB3UOA Logo Cube"
                 className="w-full h-full object-contain drop-shadow-2xl animate-[float_4s_ease-in-out_infinite] transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-[10deg]"
                 style={{

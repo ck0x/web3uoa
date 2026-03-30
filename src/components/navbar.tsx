@@ -29,7 +29,7 @@ export function Navbar() {
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
           <img
-            src="/logo/Non-Sticker-Logo-version.png"
+            src="/logo/web3uoa_logo.png"
             alt="WEB3UOA"
             className="w-10 h-10 transition-transform duration-500 group-hover:scale-110 drop-shadow-sm"
           />
