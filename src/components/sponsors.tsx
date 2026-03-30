@@ -9,7 +9,7 @@ const sponsorTiers = [
     sponsors: [
       {
         name: "FireEyes",
-        logo: "/logo/fe black_logo.svg",
+        logo: "/logo/fe_black_logo.svg",
         logoWidth: 220,
         logoHeight: 90,
       },
@@ -82,12 +82,12 @@ export function Sponsors() {
                 {tier.sponsors.map((sponsor) => (
                   <div
                     key={sponsor.name}
-                    className="flex items-center justify-center transition-all duration-300 hover:scale-105 hover:-translate-y-1 relative group"
+                    className="group relative flex h-20 w-[260px] items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:scale-105 md:h-24"
                   >
                     {/* Floating effect background */}
                     <div
                       className={cn(
-                        "absolute inset-0 blur-3xl rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500",
+                        "absolute inset-0 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20",
                         tier.tier === "Gold Sponsors"
                           ? "bg-yellow-400"
                           : tier.tier === "Silver Sponsors"
@@ -100,13 +100,13 @@ export function Sponsors() {
                       alt={`${sponsor.name} logo`}
                       width={sponsor.logoWidth}
                       height={sponsor.logoHeight}
+                      unoptimized
                       className={cn(
-                        "h-auto w-auto object-contain relative z-10 drop-shadow-sm",
-                        tier.tier === "Gold Sponsors"
-                          ? "max-h-24 md:max-h-32"
-                          : "max-h-20 md:max-h-24",
+                        "relative z-10 h-auto max-h-full w-auto max-w-full object-contain",
+                        sponsor.name === "Avalanche" && "scale-90",
+                        sponsor.name === "Ethereum Foundation" && "scale-125",
                         sponsor.name === "FireEyes" &&
-                          "brightness-0 invert tracking-widest", // Fallback if logo is black-on-black
+                          "scale-110 drop-shadow-[0_0_14px_rgba(245,158,11,0.45)]",
                       )}
                     />
                   </div>
