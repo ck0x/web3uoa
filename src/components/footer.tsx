@@ -10,31 +10,40 @@ export function Footer() {
           <div className="space-y-6 md:col-span-2">
             <div className="flex items-center gap-3">
               <img
-                src="/logo/Non-Sticker-Logo-version.png"
+                src="/logo/web3uoa_logo.png"
                 alt="WEB3UOA"
                 className="w-10 h-10 brightness-0 invert"
               />
-              <span className="text-2xl font-black tracking-tight">WEB3UOA</span>
+              <span className="text-2xl font-black tracking-tight">
+                WEB3UOA
+              </span>
             </div>
             <p className="text-background/70 leading-relaxed max-w-sm text-lg">
-              Empowering the next generation of builders, shapers, and innovators
-              at the University of Auckland.
+              Empowering the next generation of builders, shapers, and
+              innovators at the University of Auckland.
             </p>
           </div>
 
           {/* Quick links */}
           <div className="space-y-6">
-            <h3 className="font-bold text-lg text-white">
-              Navigate
-            </h3>
+            <h3 className="font-bold text-lg text-white">Navigate</h3>
             <div className="flex flex-col gap-4">
-              <a href="#about" className="text-base text-background/70 hover:text-white transition-colors w-fit font-semibold">
+              <a
+                href="#about"
+                className="text-base text-background/70 hover:text-white transition-colors w-fit font-semibold"
+              >
                 About
               </a>
-              <a href="#events" className="text-base text-background/70 hover:text-white transition-colors w-fit font-semibold">
+              <a
+                href="#events"
+                className="text-base text-background/70 hover:text-white transition-colors w-fit font-semibold"
+              >
                 Events
               </a>
-              <a href="#partners" className="text-base text-background/70 hover:text-white transition-colors w-fit font-semibold">
+              <a
+                href="#partners"
+                className="text-base text-background/70 hover:text-white transition-colors w-fit font-semibold"
+              >
                 Partners
               </a>
               <a
@@ -50,9 +59,7 @@ export function Footer() {
 
           {/* Connect */}
           <div className="space-y-6">
-            <h3 className="font-bold text-lg text-white">
-              Connect
-            </h3>
+            <h3 className="font-bold text-lg text-white">Connect</h3>
             <div className="flex gap-4">
               <a
                 href="https://instagram.com/web3uoa"
