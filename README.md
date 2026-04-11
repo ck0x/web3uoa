@@ -43,6 +43,18 @@ bun dev
 
 The site will be available at `http://localhost:5173`
 
+### Environment Variables
+
+Admin access supports one or many wallet addresses:
+
+```bash
+# Preferred: multiple addresses (comma or whitespace separated)
+NEXT_PUBLIC_ADMIN_ADDRESSES=0xAdminOne,0xAdminTwo
+
+# Backward-compatible single admin variable
+NEXT_PUBLIC_ADMIN_ADDRESS=0xAdminOne
+```
+
 ### Build for Production
 
 ```bash
