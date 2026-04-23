@@ -48,7 +48,7 @@ export function Hero() {
                 href="https://instagram.com/web3uoa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors hover:-translate-y-1 transform duration-200"
+                className="group text-muted-foreground hover:text-primary transition-colors pb-2 transform duration-200 transition-transform hover:-translate-y-1"
                 aria-label="Instagram"
               >
                 <Instagram className="w-6 h-6" />
@@ -57,7 +57,7 @@ export function Hero() {
                 href="https://x.com/web3uoa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors hover:-translate-y-1 transform duration-200"
+                className="group text-muted-foreground hover:text-primary transition-colors pb-2 transform duration-200 transition-transform hover:-translate-y-1"
                 aria-label="X (Twitter)"
               >
                 <svg
@@ -73,7 +73,7 @@ export function Hero() {
                 href="https://www.linkedin.com/company/web3uoa-university-of-auckland-web3-club/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors hover:-translate-y-1 transform duration-200"
+                className="group text-muted-foreground hover:text-primary transition-colors pb-2 transform duration-200 transition-transform hover:-translate-y-1"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-6 h-6" />
