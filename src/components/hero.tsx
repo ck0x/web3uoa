@@ -3,25 +3,23 @@ import { Instagram, Linkedin, ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden border-b border-border/50">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden border-b border-border/50">
       <div className="container relative z-10 px-4 pt-32 pb-20">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
           {/* Hero text (left side) */}
           <div className="flex-1 space-y-8 text-center lg:text-left">
-            <span className="inline-block text-xs font-black uppercase tracking-[0.3em] text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
-              University of Auckland
-            </span>
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] font-black tracking-tight text-foreground leading-[1.05]">
-              WEB3<span className="text-primary">UOA</span>
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] font-black tracking-tight leading-[1.05]">
+              <span className="text-web3">WEB3</span>
+              <span className="text-uoa">UOA</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground font-medium tracking-wide max-w-2xl mx-auto lg:mx-0">
-              Educating the next generation of blockchain innovators.
+            <p className="text-hero-text text-xl md:text-2xl font-medium tracking-wide max-w-2xl mx-auto lg:mx-0">
+              The next generation of blockchain innovators
             </p>
 
             <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4 pt-4">
               <Button
                 size="lg"
-                className="text-base px-8 h-14 shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 rounded-xl font-bold"
+                className="text-base px-8 h-14 border-2 transition-all rounded-xl font-bold !bg-nav-bg !border-button-bor !text-button-bor hover:!bg-button-bor hover:!text-white hover:!border-button-bor"
                 asChild
               >
                 <a
@@ -29,20 +27,18 @@ export function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Join the Club <ArrowRight className="ml-2 w-5 h-5" />
+                  Join the Club
                 </a>
               </Button>
               <Button
-                variant="outline"
                 size="lg"
-                className="text-base px-8 h-14 border-2 transition-all hover:bg-secondary rounded-xl font-bold"
+                className="text-base px-8 h-14 border-2 transition-all rounded-xl font-bold !bg-nav-bg !border-button-bor !text-button-bor hover:!bg-button-bor hover:!text-white hover:!border-button-bor"
                 asChild
               >
                 <a href="#about">Learn More</a>
               </Button>
             </div>
 
-            {/* Social Links */}
             <div className="flex items-center lg:justify-start justify-center gap-8 pt-8">
               <a
                 href="https://instagram.com/web3uoa"
@@ -79,7 +75,8 @@ export function Hero() {
                 <Linkedin className="w-6 h-6" />
               </a>
             </div>
-          </div>
+          </div> 
+
 
           {/* Logo element (right side) */}
           <div className="flex-1 flex justify-center lg:justify-end items-center relative">
