@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useAccount } from "wagmi";
 import { isAllowedAdminAddress } from "@/lib/admin-auth";
+import Link from "next/link";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -60,13 +61,7 @@ export function Navbar() {
             className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
             asChild
           >
-            <a
-              href="https://forms.gle/vzRb7t46SPBUwi7v8"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join Us
-            </a>
+            <Link href="/pages/join-us">Join Us</Link>
           </Button>
         </div>
 
