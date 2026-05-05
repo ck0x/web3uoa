@@ -1,0 +1,55 @@
+"use client";
+
+import { useWallet } from "@/hooks/use-wallet";
+import { Button } from "@/components/ui/button";
+import { Wallet } from "lucide-react";
+import Link from "next/link";
+
+function truncateAddress(address: string) {
+  return `${address.slice(0, 6)}…${address.slice(-4)}`;
+}
+
+export function WalletButton() {
+  const { address, isConnected, connect, mounted } = useWallet();
+
+  if (!mounted) {
+    return (
+      <Button
+        size="sm"
+        variant="outline"
+        className="rounded-xl px-4 py-5 font-bold opacity-0 pointer-events-none"
+        aria-hidden
+      >
+        <Wallet className="w-4 h-4 mr-2" />
+        Connect Wallet
+      </Button>
+    );
+  }
+
+  if (isConnected && address) {
+    return (
+      <Link href="/profile">
+        <Button
+          size="sm"
+          variant="outline"
+          className="rounded-xl px-4 py-5 font-bold border-primary/30 bg-primary/5 hover:bg-primary/10 transition-all hover:-translate-y-0.5"
+        >
+          <div className="w-2 h-2 rounded-full bg-green-500 mr-2 shrink-0" />
+          {truncateAddress(address)}
+        </Button>
+      </Link>
+    );
+  }
+
+  return (
+    <Button
+      size="sm"
+      variant="outline"
+      onClick={() => connect()}
+      className="rounded-xl px-4 py-5 font-bold hover:bg-primary hover:text-primary-foreground transition-all hover:-translate-y-0.5"
+    >
+      <Wallet className="w-4 h-4 mr-2" />
+      Connect Wallet
+    </Button>
+  );
+}

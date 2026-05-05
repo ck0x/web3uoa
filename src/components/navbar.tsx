@@ -1,31 +1,27 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useAccount } from "wagmi";
-import { isAllowedAdminAddress } from "@/lib/admin-auth";
+import { useWallet } from "@/hooks/use-wallet";
+import { WalletButton } from "@/components/wallet-button";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const navLinks = [
-  { label: "About", href: "/pages/about" },
-  { label: "Events", href: "/pages/events" },
-  { label: "Partners", href: "/pages/partners" },
-  { label: "Claim your Web3 ID!", href: "/pages/claim-id", isCTA: true },
+  { label: "About", href: "/#about" },
+  { label: "Events", href: "/#events" },
+  { label: "Partners", href: "/#partners" },
+  { label: "Claim your Web3 ID!", href: "/#identity", isCTA: true },
 ];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { address } = useAccount();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isAdmin = mounted && isAllowedAdminAddress(address);
+  const { isAdmin } = useWallet();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
-    <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent py-4 text-foreground">
+    <nav className={`top-0 left-0 right-0 z-50 py-4 text-foreground ${isHome ? "absolute bg-transparent" : "fixed bg-background/95 backdrop-blur-xl border-b border-border"}`}>
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
@@ -56,6 +52,7 @@ export function Navbar() {
               Admin Panel
             </Link>
           )}
+          <WalletButton />
           <Button
             size="sm"
             className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
@@ -109,7 +106,7 @@ export function Navbar() {
               </Link>
             )}
             <div className="flex justify-center py-2">
-              <appkit-button balance="hide" />
+              <WalletButton />
             </div>
             <Button
               size="lg"
