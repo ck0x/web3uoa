@@ -105,7 +105,10 @@ export function Navbar() {
                 Admin Panel
               </Link>
             )}
-            <div className="flex justify-center py-2">
+            <div
+              className="flex justify-center py-2"
+              onClickCapture={() => setMobileOpen(false)}
+            >
               <WalletButton />
             </div>
             <Button
