@@ -11,6 +11,7 @@ import {
   FacultyType,
 } from "../lib/schemas/join-us-form.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FormInput, FormSelect } from "./ui/form-fields";
 
 export function JoinUsForm() {
   const {
@@ -41,54 +42,79 @@ export function JoinUsForm() {
           Join Our Team
         </h2>
 
-        <input
+        <FormInput
           className={inputClass}
-          defaultValue="first_name"
+          placeholder="First Name"
           {...register("first_name")}
         />
-        <input
+        <FormInput
           className={inputClass}
-          defaultValue="last_name"
+          placeholder="Last Name"
           {...register("last_name")}
         />
-        <input
+        <FormInput
           type="email"
           className={inputClass}
-          defaultValue="email"
+          placeholder="Email"
           {...register("email")}
         />
 
-        <select className={inputClass} {...register("university")}>
+        <FormSelect
+          className={inputClass}
+          placeholder="University"
+          {...register("university")}
+        >
+          <option value="" disabled>
+            Select University
+          </option>
           <option value={UniversityType.UOA}>UOA</option>
           <option value={UniversityType.AUT}>Aut</option>
           <option value={UniversityType.Other}>Other</option>
-        </select>
+        </FormSelect>
 
-        <input className={inputClass} defaultValue="upi" {...register("upi")} />
-        <input
+        <FormInput
+          className={inputClass}
+          placeholder="UPI"
+          {...register("upi")}
+        />
+        <FormInput
           type="number"
           className={inputClass}
-          defaultValue="1234567"
+          placeholder="Student ID"
           {...register("student_id", { valueAsNumber: true })}
         />
 
-        <select className={inputClass} {...register("degree_type")}>
+        <FormSelect
+          className={inputClass}
+          placeholder="Degree Type"
+          {...register("degree_type")}
+        >
+          <option value="" disabled>
+            Select Degree Type
+          </option>
           <option value={DegreeType.FIRST_YEAR}>First Year</option>
           <option value={DegreeType.SECOND_YEAR}>Second Year</option>
           <option value={DegreeType.THIRD_YEAR}>Third Year</option>
           <option value={DegreeType.FOURTH_YEAR}>Fourth Year</option>
-        </select>
+        </FormSelect>
 
-        <select className={inputClass} {...register("faculty")}>
+        <FormSelect
+          className={inputClass}
+          placeholder="Faculty"
+          {...register("faculty")}
+        >
+          <option value="" disabled>
+            Select Faculty
+          </option>
           <option value={FacultyType.SCIENCE}>Science</option>
           <option value={FacultyType.ART}>Art</option>
           <option value={FacultyType.ENGINEERING}>Engineering</option>
           <option value={FacultyType.MEDICINE}>Medicine</option>
-        </select>
+        </FormSelect>
 
         <textarea
           className={inputClass}
-          defaultValue="goal_statement"
+          placeholder="Goal Statement"
           {...register("goal_statement")}
         />
 
