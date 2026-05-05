@@ -1,4 +1,5 @@
 import { Code2, Users, Rocket } from "lucide-react";
+import { JoinUsForm } from "./join-us-form";
 
 export function JoinUs() {
   return (
@@ -27,9 +28,7 @@ export function JoinUs() {
 
         {/* Sign up grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          
-          
+          <JoinUsForm />
         </div>
       </div>
     </section>
