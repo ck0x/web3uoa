@@ -26,16 +26,17 @@ export function WalletButton() {
 
   if (isConnected && address) {
     return (
-      <Link href="/profile">
-        <Button
-          size="sm"
-          variant="outline"
-          className="rounded-xl px-4 py-5 font-bold border-primary/30 bg-primary/5 hover:bg-primary/10 transition-all hover:-translate-y-0.5"
-        >
+      <Button
+        size="sm"
+        variant="outline"
+        asChild
+        className="rounded-xl px-4 py-5 font-bold border-primary/30 bg-primary/5 hover:bg-primary/10 transition-all hover:-translate-y-0.5"
+      >
+        <Link href="/profile">
           <div className="w-2 h-2 rounded-full bg-green-500 mr-2 shrink-0" />
           {truncateAddress(address)}
-        </Button>
-      </Link>
+        </Link>
+      </Button>
     );
   }
 
