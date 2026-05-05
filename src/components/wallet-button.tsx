@@ -14,15 +14,13 @@ export function WalletButton() {
 
   if (!mounted) {
     return (
-      <Button
-        size="sm"
-        variant="outline"
-        className="rounded-xl px-4 py-5 font-bold opacity-0 pointer-events-none"
-        aria-hidden
+      <div
+        className="rounded-xl px-4 py-5 font-bold opacity-0 pointer-events-none inline-flex items-center justify-center"
+        aria-hidden={true}
       >
         <Wallet className="w-4 h-4 mr-2" />
         Connect Wallet
-      </Button>
+      </div>
     );
   }
 
