@@ -130,6 +130,19 @@ export function JoinUsForm() {
                 </div>
               )}
 
+            {selectedUniversity &&
+              selectedUniversity === UniversityType.Other && (
+                <div className="flex-1">
+                  <FormInput
+                    type="text"
+                    className={inputClass}
+                    placeholder="Other University"
+                    error={errors.university_other}
+                    {...register("university_other")}
+                  />
+                </div>
+              )}
+
             <FormSelect
               className={inputClass}
               defaultValue=""
