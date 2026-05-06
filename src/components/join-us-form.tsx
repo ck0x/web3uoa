@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput, FormSelect } from "./ui/form-fields";
 import { createClient } from "@supabase/supabase-js";
 
+// temporary supabase client here for testing
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -25,15 +26,18 @@ export function JoinUsForm() {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<JoinUsFormData>({
     resolver: zodResolver(joinUsFormSchema),
   });
+
+  const selectedUniversity = watch("university");
 
   const onSubmit: SubmitHandler<JoinUsFormData> = async (data) => {
     console.log(data);
 
     const { data: insertedRow, error } = await supabase
-      .from("registrations")
+      .from("join_us")
       .insert(data)
       .select();
 
@@ -92,52 +96,63 @@ export function JoinUsForm() {
             Select University
           </option>
           <option value={UniversityType.UOA}>UOA</option>
-          <option value={UniversityType.AUT}>Aut</option>
+          <option value={UniversityType.AUT}>AUT</option>
           <option value={UniversityType.Other}>Other</option>
+          <option value={UniversityType.None}>None</option>
         </FormSelect>
 
-        <FormInput
-          className={inputClass}
-          placeholder="UPI"
-          error={errors.upi}
-          {...register("upi")}
-        />
-        <FormInput
-          type="number"
-          className={inputClass}
-          placeholder="Student ID"
-          error={errors.student_id}
-        />
+        {selectedUniversity && selectedUniversity !== UniversityType.None && (
+          <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-top-4 duration-300">
+            <FormInput
+              className={inputClass}
+              placeholder="UPI"
+              error={errors.upi}
+              {...register("upi")}
+            />
+            <FormInput
+              type="number"
+              className={inputClass}
+              placeholder="Student ID"
+              error={errors.student_id}
+            />
 
-        <FormSelect
-          className={inputClass}
-          defaultValue=""
-          error={errors.degree_type}
-          {...register("degree_type")}
-        >
-          <option value="" disabled>
-            Select Degree Type
-          </option>
-          <option value={DegreeType.FIRST_YEAR}>First Year</option>
-          <option value={DegreeType.SECOND_YEAR}>Second Year</option>
-          <option value={DegreeType.THIRD_YEAR}>Third Year</option>
-          <option value={DegreeType.FOURTH_YEAR}>Fourth Year</option>
-        </FormSelect>
+            <FormSelect
+              className={inputClass}
+              defaultValue=""
+              error={errors.degree_type}
+              {...register("degree_type")}
+            >
+              <option value="" disabled>
+                Select Degree Type
+              </option>
+              <option value={DegreeType.FirstYear}>First Year</option>
+              <option value={DegreeType.SecondYear}>Second Year</option>
+              <option value={DegreeType.ThirdYear}>Third Year</option>
+              <option value={DegreeType.FourthYear}>Fourth Year</option>
+              <option value={DegreeType.FourthYearAndBeyond}>
+                Fourth Year and Beyond
+              </option>
+              <option value={DegreeType.Masters}>Masters</option>
+              <option value={DegreeType.PhD}>PhD</option>
+            </FormSelect>
 
-        <FormSelect
-          className={inputClass}
-          defaultValue=""
-          error={errors.faculty}
-          {...register("faculty")}
-        >
-          <option value="" disabled>
-            Select Faculty
-          </option>
-          <option value={FacultyType.SCIENCE}>Science</option>
-          <option value={FacultyType.ART}>Art</option>
-          <option value={FacultyType.ENGINEERING}>Engineering</option>
-          <option value={FacultyType.MEDICINE}>Medicine</option>
-        </FormSelect>
+            <FormSelect
+              className={inputClass}
+              defaultValue=""
+              error={errors.faculty}
+              {...register("faculty")}
+            >
+              <option value="" disabled>
+                Select Faculty
+              </option>
+              <option value={FacultyType.Science}>Science</option>
+              <option value={FacultyType.Art}>Art</option>
+              <option value={FacultyType.Engineering}>Engineering</option>
+              <option value={FacultyType.Medicine}>Medicine</option>
+              <option value={FacultyType.Other}>Other</option>
+            </FormSelect>
+          </div>
+        )}
 
         <textarea
           className={inputClass}
