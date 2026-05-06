@@ -18,15 +18,18 @@ export function JoinUsForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<JoinUsFormData>({
     resolver: zodResolver(joinUsFormSchema),
   });
 
   const onSubmit: SubmitHandler<JoinUsFormData> = (data) => {
     console.log(data);
-  };
 
-  console.log("Current errors state:", errors);
+    reset();
+
+    alert("Form submitted successfully!");
+  };
 
   // Storing the shared styles in a variable keeps the JSX clean!
   const inputClass =
@@ -37,6 +40,7 @@ export function JoinUsForm() {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-lg bg-white p-8 rounded-xl shadow-lg flex flex-col gap-4"
+        noValidate
       >
         <h2 className="text-2xl font-bold text-gray-800 mb-2 text-center">
           Join Our Team
@@ -45,23 +49,27 @@ export function JoinUsForm() {
         <FormInput
           className={inputClass}
           placeholder="First Name"
+          error={errors.first_name}
           {...register("first_name")}
         />
         <FormInput
           className={inputClass}
           placeholder="Last Name"
+          error={errors.last_name}
           {...register("last_name")}
         />
         <FormInput
           type="email"
           className={inputClass}
           placeholder="Email"
+          error={errors.email}
           {...register("email")}
         />
 
         <FormSelect
           className={inputClass}
-          placeholder="University"
+          defaultValue=""
+          error={errors.university}
           {...register("university")}
         >
           <option value="" disabled>
@@ -75,18 +83,20 @@ export function JoinUsForm() {
         <FormInput
           className={inputClass}
           placeholder="UPI"
+          error={errors.upi}
           {...register("upi")}
         />
         <FormInput
           type="number"
           className={inputClass}
           placeholder="Student ID"
-          {...register("student_id", { valueAsNumber: true })}
+          error={errors.student_id}
         />
 
         <FormSelect
           className={inputClass}
-          placeholder="Degree Type"
+          defaultValue=""
+          error={errors.degree_type}
           {...register("degree_type")}
         >
           <option value="" disabled>
@@ -100,7 +110,8 @@ export function JoinUsForm() {
 
         <FormSelect
           className={inputClass}
-          placeholder="Faculty"
+          defaultValue=""
+          error={errors.faculty}
           {...register("faculty")}
         >
           <option value="" disabled>
