@@ -38,6 +38,7 @@ const joinUsFormSchema = z.object({
   last_name: z.string().min(1, "Last name is required"),
   email: z.string().email(),
   university: z.nativeEnum(UniversityType, "Select University"),
+  university_other: z.string().optional(),
   upi: z.string().optional(),
   student_id: z.number().optional(),
   degree_type: emptyToUndefined(z.nativeEnum(DegreeType).optional()),
