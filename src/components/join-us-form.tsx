@@ -102,19 +102,33 @@ export function JoinUsForm() {
         </FormSelect>
 
         {selectedUniversity && selectedUniversity !== UniversityType.None && (
-          <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-top-4 duration-300">
-            <FormInput
-              className={inputClass}
-              placeholder="UPI"
-              error={errors.upi}
-              {...register("upi")}
-            />
-            <FormInput
-              type="number"
-              className={inputClass}
-              placeholder="Student ID"
-              error={errors.student_id}
-            />
+          <div className="flex flex-col gap-4">
+            {selectedUniversity &&
+              selectedUniversity !== UniversityType.Other && (
+                <div className="flex flex-row gap-4">
+                  {selectedUniversity &&
+                    selectedUniversity !== UniversityType.AUT && (
+                      <div className="flex-1">
+                        <FormInput
+                          className={inputClass}
+                          placeholder="UPI"
+                          error={errors.upi}
+                          {...register("upi")}
+                        />
+                      </div>
+                    )}
+
+                  <div className="flex-1">
+                    <FormInput
+                      type="number"
+                      className={inputClass}
+                      placeholder="Student ID"
+                      error={errors.student_id}
+                      {...register("student_id")}
+                    />
+                  </div>
+                </div>
+              )}
 
             <FormSelect
               className={inputClass}
