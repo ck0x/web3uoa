@@ -1,21 +1,16 @@
 "use client";
 
+import React, { useState } from "react";
 import { useWallet } from "@/hooks/use-wallet";
 import { WalletButton } from "@/components/wallet-button";
-import { Button } from "@/components/ui/button";
-import { Copy, CheckCheck } from "lucide-react";
-import { useState } from "react";
-import { mainnet, sepolia } from "wagmi/chains";
-
-function getNetworkName(chainId?: number) {
-  if (chainId === mainnet.id) return "Ethereum Mainnet";
-  if (chainId === sepolia.id) return "Sepolia Testnet";
-  return "Unknown Network";
-}
+import { Copy, CheckCheck, PenTool } from "lucide-react";
 
 export default function ProfilePage() {
-  const { address, isConnected, chainId, disconnect, mounted } = useWallet();
+  const { address, isConnected, disconnect, mounted } = useWallet();
   const [copied, setCopied] = useState(false);
+  const [displayName, setDisplayName] = useState("Name");
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
 
   const copyAddress = () => {
     if (!address) return;
@@ -23,6 +18,29 @@ export default function ProfilePage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setProfileImage(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Hardcoded 'badge elements', replace with a component later
+  const badgeItems: Record<number, null> = {};
+  for (let i = 0; i < 9; i += 1) {
+    badgeItems[i] = null;
+  }
+
+  // Hardcoded 'event history', replace this with a component later
+  const eventHistory = [
+    { id: 1, title: "Launch Party" },
+    { id: 2, title: "Hackathon" },
+  ];
 
   if (!mounted) {
     return (
@@ -34,13 +52,19 @@ export default function ProfilePage() {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="min-h-screen flex items-center justify-center bg-[linear-gradient(180deg,_#AFDCF1_0%,_#ADD8F2_27%,_#D3B7F3_100%)]">
         <div className="text-center space-y-6 max-w-sm mx-auto px-4">
           <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto">
-            <img src="/logo/web3uoa_logo.png" alt="WEB3UOA" className="w-10 h-10 object-contain" />
+            <img
+              src="/logo/web3uoa_logo.png"
+              alt="WEB3UOA"
+              className="w-10 h-10 object-contain"
+            />
           </div>
           <div>
-            <h1 className="text-2xl font-black tracking-tight mb-2">Your Profile</h1>
+            <h1 className="text-2xl font-black tracking-tight mb-2">
+              Your Profile
+            </h1>
             <p className="text-muted-foreground text-sm">
               Connect your wallet to view your profile.
             </p>
@@ -52,59 +76,109 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pt-32 pb-24">
-      {/* Subtle background blobs matching site style */}
-      <div className="fixed top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl opacity-50 pointer-events-none" />
-      <div className="fixed bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full filter blur-3xl opacity-50 pointer-events-none" />
-
-      <div className="container mx-auto px-4 max-w-2xl relative z-10">
-        <div className="mb-10">
-          <span className="inline-block text-xs font-black uppercase tracking-[0.3em] text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20 mb-4">
-            Profile
-          </span>
-          <h1 className="text-4xl font-black tracking-tight">Your Wallet</h1>
+    <div className=" min-h-screen w-screen flex flex-col py-16 gap-16 justify-center items-center bg-[linear-gradient(180deg,_#AFDCF1_0%,_#ADD8F2_27%,_#D3B7F3_100%)] pt-32 pb-24">
+      {/* Profile Card */}
+      <div className="relative bg-white/80 w-[80vw] p-15 rounded-2xl">
+        <div className="absolute z-1 left-10 top-1/2 -translate-y-1/2 rounded-full bg-white w-70 h-70 flex justify-center items-center overflow-hidden hover:bg-accent">
+          {profileImage ? (
+            <img
+              src={profileImage}
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="text-gray-400 text-sm">No Image</div>
+          )}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="absolute inset-0 opacity-0 cursor-pointer"
+            title="Click to upload profile image"
+          />
         </div>
-
-        {/* Wallet card */}
-        <div className="bg-secondary/50 backdrop-blur-sm rounded-2xl border border-border shadow-xl p-8 space-y-6">
-          {/* Connected indicator */}
-          <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
-            <span className="text-sm font-bold text-green-600">Connected</span>
-            <span className="text-sm text-muted-foreground ml-1">· {getNetworkName(chainId)}</span>
-          </div>
-
-          {/* Address */}
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
-              Wallet Address
-            </p>
-            <div className="flex items-center gap-3 bg-background/70 rounded-xl border border-border px-4 py-3">
-              <span className="font-mono text-sm break-all flex-1">{address}</span>
+        <div className="flex flex-col ml-80">
+          {isEditingName ? (
+            <div className="flex items-center space-x-2">
+              <input
+                type="text"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                className="text-xl font-bold border rounded px-2 py-1"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    setIsEditingName(false);
+                  }
+                }}
+              />
               <button
-                onClick={copyAddress}
-                className="text-muted-foreground hover:text-primary transition-colors shrink-0"
-                aria-label="Copy address"
+                onClick={() => setIsEditingName(false)}
+                className="text-sm text-primary hover:underline"
               >
-                {copied ? (
-                  <CheckCheck className="w-4 h-4 text-green-500" />
-                ) : (
-                  <Copy className="w-4 h-4" />
-                )}
+                Save
               </button>
             </div>
-          </div>
-
-          {/* Disconnect */}
-          <div className="pt-2 border-t border-border/50">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => disconnect()}
-              className="rounded-xl font-bold border-destructive/30 text-destructive hover:bg-destructive hover:text-destructive-foreground transition-all"
+          ) : (
+            <div className="flex items-center space-x-2">
+              <p className="text-2xl font-bold">{displayName}</p>
+              <button
+                onClick={() => setIsEditingName(true)}
+                className="text-sm text-muted-foreground hover:text-primary"
+              >
+                <PenTool className="w-4 h-4 ml-1" />
+              </button>
+            </div>
+          )}
+          <span className="font-mono text-sm break-all flex-1 mt-4">
+            {address} {""}
+            <button
+              onClick={copyAddress}
+              className="text-muted-foreground hover:text-primary transition-colors shrink-0"
+              aria-label="Copy address"
             >
-              Disconnect Wallet
-            </Button>
+              {copied ? (
+                <CheckCheck className="w-4 h-4 text-green-500" />
+              ) : (
+                <Copy className="w-4 h-4" />
+              )}
+            </button>
+            <div className="pt-2">
+              <button
+                onClick={() => disconnect()}
+                className="rounded-xl text-xs font-bold text-primary hover:underline"
+              >
+                Disconnect Wallet
+              </button>
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <div className="flex flex-row flex-1 w-[80vw] gap-16 items-end">
+        {/* Badges*/}
+        <div className="bg-white/80 w-[42vw] p-10 rounded-2xl mt-10">
+          <p className="text-2xl font-bold">Badges</p>
+
+          <div className="mt-8 grid grid-cols-3 gap-y-8 justify-items-center">
+            {Object.keys(badgeItems).map((key) => (
+              <div key={key} className="w-30 h-30 rounded-full bg-primary/10" />
+            ))}
+          </div>
+        </div>
+
+        {/* Event History*/}
+        <div className="bg-white/80 w-[34vw] h-[80vh] p-10 rounded-2xl">
+          <p className="text-2xl font-bold">Events Attended</p>
+
+          <div className="mt-8 space-y-4">
+            {eventHistory.map((event) => (
+              <div
+                key={event.id}
+                className="rounded-3xl bg-primary/10 px-6 py-12"
+              >
+                <p className="font-semibold text-lg">{event.title}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
