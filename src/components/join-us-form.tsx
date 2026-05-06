@@ -12,6 +12,12 @@ import {
 } from "../lib/schemas/join-us-form.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput, FormSelect } from "./ui/form-fields";
+import { createClient } from "@supabase/supabase-js";
+
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+);
 
 export function JoinUsForm() {
   const {
@@ -23,11 +29,21 @@ export function JoinUsForm() {
     resolver: zodResolver(joinUsFormSchema),
   });
 
-  const onSubmit: SubmitHandler<JoinUsFormData> = (data) => {
+  const onSubmit: SubmitHandler<JoinUsFormData> = async (data) => {
     console.log(data);
 
-    reset();
+    const { data: insertedRow, error } = await supabase
+      .from("registrations")
+      .insert(data)
+      .select();
 
+    if (error) {
+      alert("Error submitting form");
+      console.error(error);
+      return;
+    }
+
+    reset();
     alert("Form submitted successfully!");
   };
 
