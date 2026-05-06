@@ -124,7 +124,7 @@ export function JoinUsForm() {
                       className={inputClass}
                       placeholder="Student ID"
                       error={errors.student_id}
-                      {...register("student_id")}
+                      {...register("student_id", { valueAsNumber: true })}
                     />
                   </div>
                 </div>
