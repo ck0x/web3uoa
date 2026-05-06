@@ -9,7 +9,7 @@ export function JoinUs() {
     >
       <div className="container mx-auto px-4">
         {/* Section header */}
-        <div className="mb-16 space-y-4 max-w-2xl">
+        <div className=" space-y-4 max-w-2xl mx-auto text-center">
           <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
             / Join Us
           </span>
@@ -27,7 +27,7 @@ export function JoinUs() {
         </div>
 
         {/* Sign up grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="max-w-2xl mx-auto w-full">
           <JoinUsForm />
         </div>
       </div>

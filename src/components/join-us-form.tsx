@@ -56,10 +56,10 @@ export function JoinUsForm() {
     "w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all";
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+    <div className="min-h-screen flex items-center justify-center p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-lg bg-white p-8 rounded-xl shadow-lg flex flex-col gap-4"
+        className="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl/20 flex flex-col gap-4"
         noValidate
       >
         <h2 className="text-2xl font-bold text-gray-800 mb-2 text-center">
