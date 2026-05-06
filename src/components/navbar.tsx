@@ -146,7 +146,7 @@ export function Navbar() {
 
       {/* Mobile dropdown */}
       {mobileOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-[#404246]/90 backdrop-blur-md border border-white/10 shadow-lg rounded-2xl overflow-hidden">
+        <div className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-nav-bg backdrop-blur-md border border-white/10 shadow-lg rounded-2xl overflow-hidden">
           <div className="px-6 py-5 flex flex-col gap-1">
             {navLinks.map((link) => (
               <a
