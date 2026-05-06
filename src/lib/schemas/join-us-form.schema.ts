@@ -3,7 +3,8 @@ import { z } from "zod";
 export enum UniversityType {
   UOA = "UOA",
   AUT = "AUT",
-  Other = "OTHER",
+  Other = "Other",
+  None = "None",
 }
 
 export enum DegreeType {
@@ -11,7 +12,9 @@ export enum DegreeType {
   SecondYear = "Second Year",
   ThirdYear = "Third Year",
   FourthYear = "Fourth Year",
-  Other = "Other",
+  FourthYearAndBeyond = "Fourth Year and Beyond",
+  Masters = "Masters",
+  PhD = "PhD",
 }
 
 export enum FacultyType {
