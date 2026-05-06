@@ -36,16 +36,16 @@ export function JoinUsForm() {
   const onSubmit: SubmitHandler<JoinUsFormData> = async (data) => {
     console.log(data);
 
-    const { data: insertedRow, error } = await supabase
-      .from("join_us")
-      .insert(data)
-      .select();
+    // const { data: insertedRow, error } = await supabase
+    //   .from("join_us")
+    //   .insert(data)
+    //   .select();
 
-    if (error) {
-      alert("Error submitting form");
-      console.error(error);
-      return;
-    }
+    // if (error) {
+    //   alert("Error submitting form");
+    //   console.error(error);
+    //   return;
+    // }
 
     reset();
     alert("Form submitted successfully!");
