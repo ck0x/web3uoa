@@ -14,6 +14,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput, FormSelect } from "./ui/form-field";
 import { RegistrationService } from "../services/registrations/registrations-service";
 
+/**
+ * Renders a registration form for new members to join the team.
+ * This form handles user input for personal details, university information,
+ * and a goal statement. It integrates with `react-hook-form` for validation
+ * and form state management, and interacts with `RegistrationService` to
+ * check email availability and submit registration data.
+ *
+ * @returns {JSX.Element} The registration form component.
+ */
 export function RegistrationForm() {
   const {
     register,
@@ -27,6 +36,13 @@ export function RegistrationForm() {
 
   const selectedUniversity = watch("university");
 
+  /**
+   * Handles the form submission.
+   * Validates the form data, checks if the email is already taken,
+   * submits the registration data, and resets the form.
+   *
+   * @param {RegistrationData} data - The validated form data.
+   */
   const onSubmit: SubmitHandler<RegistrationData> = async (data) => {
     console.log(data);
 
