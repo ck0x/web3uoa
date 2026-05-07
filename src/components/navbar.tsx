@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useAccount } from "wagmi";
 import { isAllowedAdminAddress } from "@/lib/admin-auth";
+import { Russo_One } from 'next/font/google'
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -68,7 +69,7 @@ export function Navbar() {
             alt="WEB3UOA"
             className="w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-500 group-hover:scale-110 drop-shadow-sm"
           />
-          <span className="text-nav-text text-lg sm:text-xl font-black tracking-tight">WEB3UOA</span>
+          <span className="text-nav-text text-lg sm:text-xl font-black tracking-tight font-russo">WEB3UOA</span>
         </a>
 
         {/* Desktop links */}

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -12,7 +13,10 @@
   --color-button: rgba(255, 255, 255.6);
   --color-button-bor: var(--color-button-b);
   --color-button-txt: rgba(63, 101, 226);
-
+  
+  --font-russo: 
+  'Russo One', sans-serif;
+  
   --font-sans:
     "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
