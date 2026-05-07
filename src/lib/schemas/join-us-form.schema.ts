@@ -3,26 +3,26 @@ import { z } from "zod";
 export enum UniversityType {
   UOA = "UOA",
   AUT = "AUT",
-  Other = "Other",
-  None = "None",
+  Other = "OTHER",
+  None = "NONE",
 }
 
 export enum DegreeType {
-  FirstYear = "First Year",
-  SecondYear = "Second Year",
-  ThirdYear = "Third Year",
-  FourthYear = "Fourth Year",
-  FourthYearAndBeyond = "Fourth Year and Beyond",
-  Masters = "Masters",
-  PhD = "PhD",
+  FirstYear = "FIRST_YEAR",
+  SecondYear = "SECOND_YEAR",
+  ThirdYear = "THIRD_YEAR",
+  FourthYear = "FOURTH_YEAR",
+  FourthYearAndBeyond = "FOURTH_ABOVE",
+  Masters = "MASTER",
+  PhD = "PHD",
 }
 
 export enum FacultyType {
-  Art = "Art",
-  Commerce = "Commerce",
-  Engineering = "Engineering",
-  Science = "Science",
-  Other = "Other",
+  Arts = "ARTS",
+  Commerce = "COMMERCE",
+  Engineering = "ENGINEERING",
+  Science = "SCIENCE",
+  Other = "OTHER",
 }
 
 // util funciton

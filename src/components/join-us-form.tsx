@@ -13,12 +13,13 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput, FormSelect } from "./ui/form-fields";
 import { createClient } from "@supabase/supabase-js";
+import { supabase } from "../lib/supabase.tsx";
 
-// temporary supabase client here for testing
-export const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-);
+// // temporary supabase client here for testing
+// export const supabase = createClient(
+//   process.env.NEXT_PUBLIC_SUPABASE_URL,
+//   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+// );
 
 export function JoinUsForm() {
   const {
@@ -36,16 +37,16 @@ export function JoinUsForm() {
   const onSubmit: SubmitHandler<JoinUsFormData> = async (data) => {
     console.log(data);
 
-    // const { data: insertedRow, error } = await supabase
-    //   .from("join_us")
-    //   .insert(data)
-    //   .select();
+    const { data: insertedRow, error } = await supabase
+      .from("registrations")
+      .insert(data);
+    // .select();
 
-    // if (error) {
-    //   alert("Error submitting form");
-    //   console.error(error);
-    //   return;
-    // }
+    if (error) {
+      alert("Error submitting form");
+      console.error(error);
+      return;
+    }
 
     reset();
     alert("Form submitted successfully!");
@@ -173,9 +174,9 @@ export function JoinUsForm() {
                 Select Faculty
               </option>
               <option value={FacultyType.Science}>Science</option>
-              <option value={FacultyType.Art}>Art</option>
+              <option value={FacultyType.Arts}>Arts</option>
               <option value={FacultyType.Engineering}>Engineering</option>
-              <option value={FacultyType.Medicine}>Medicine</option>
+              <option value={FacultyType.Commerce}>Commerce</option>
               <option value={FacultyType.Other}>Other</option>
             </FormSelect>
           </div>
