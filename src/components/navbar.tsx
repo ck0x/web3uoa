@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useAccount } from "wagmi";
 import { isAllowedAdminAddress } from "@/lib/admin-auth";
-import { Russo_One } from 'next/font/google'
 
 const navLinks = [
   { label: "About", href: "#about" },
