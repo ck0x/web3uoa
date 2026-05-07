@@ -111,11 +111,14 @@ export function RegistrationForm() {
 
                   <div className="flex-1">
                     <FormInput
-                      type="number"
+                      type="text"
                       className={inputClass}
+                      numericOnly={true}
                       placeholder="Student ID"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       error={errors.student_id}
-                      {...register("student_id", { valueAsNumber: true })}
+                      {...register("student_id")}
                     />
                   </div>
                 </div>

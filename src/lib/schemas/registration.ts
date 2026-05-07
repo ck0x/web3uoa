@@ -41,7 +41,7 @@ const RegistrationSchema = z.object({
   university: z.nativeEnum(UniversityType, "Select University"),
   university_other: z.string().optional(),
   upi: z.string().optional(),
-  student_id: z.number().optional(),
+  student_id: z.string().optional(), // numeric is handled
   degree_type: emptyToUndefined(z.nativeEnum(DegreeType).optional()),
   faculty: emptyToUndefined(z.nativeEnum(FacultyType).optional()),
   goal_statement: z.string().optional(),
