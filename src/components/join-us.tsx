@@ -1,5 +1,4 @@
-import { Code2, Users, Rocket } from "lucide-react";
-import { JoinUsForm } from "./join-us-form";
+import { RegistrationForm } from "./registration-form";
 
 export function JoinUs() {
   return (
@@ -28,7 +27,7 @@ export function JoinUs() {
 
         {/* Sign up grid */}
         <div className="max-w-2xl mx-auto w-full">
-          <JoinUsForm />
+          <RegistrationForm />
         </div>
       </div>
     </section>

@@ -2,51 +2,41 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
-  joinUsFormSchema,
-  JoinUsFormData,
-} from "../lib/schemas/join-us-form.schema";
+  RegistrationSchema,
+  RegistrationData,
+} from "../lib/schemas/registration";
 import {
   UniversityType,
   DegreeType,
   FacultyType,
-} from "../lib/schemas/join-us-form.schema";
+} from "../lib/schemas/registration";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormInput, FormSelect } from "./ui/form-fields";
-import { createClient } from "@supabase/supabase-js";
-import { supabase } from "../lib/supabase.tsx";
+import { FormInput, FormSelect } from "./ui/form-field";
+import { RegistrationService } from "../services/registrations/registrations-service";
 
-// // temporary supabase client here for testing
-// export const supabase = createClient(
-//   process.env.NEXT_PUBLIC_SUPABASE_URL,
-//   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-// );
-
-export function JoinUsForm() {
+export function RegistrationForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
     watch,
-  } = useForm<JoinUsFormData>({
-    resolver: zodResolver(joinUsFormSchema),
+  } = useForm<RegistrationData>({
+    resolver: zodResolver(RegistrationSchema),
   });
 
   const selectedUniversity = watch("university");
 
-  const onSubmit: SubmitHandler<JoinUsFormData> = async (data) => {
+  const onSubmit: SubmitHandler<RegistrationData> = async (data) => {
     console.log(data);
 
-    const { data: insertedRow, error } = await supabase
-      .from("registrations")
-      .insert(data);
-    // .select();
-
-    if (error) {
-      alert("Error submitting form");
-      console.error(error);
+    const emailTaken = await RegistrationService.isEmailTaken(data.email);
+    if (emailTaken) {
+      alert("Email is already taken");
       return;
     }
+
+    await RegistrationService.submitRegistration(data);
 
     reset();
     alert("Form submitted successfully!");

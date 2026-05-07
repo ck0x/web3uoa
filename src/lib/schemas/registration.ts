@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { RegistrationService } from "../../services/registrations/registrations-service";
 
 export enum UniversityType {
   UOA = "UOA",
@@ -33,7 +34,7 @@ const emptyToUndefined = <T extends z.ZodTypeAny>(schema: T) => {
   }, schema);
 };
 
-const joinUsFormSchema = z.object({
+const RegistrationSchema = z.object({
   first_name: z.string().min(1, "First name is required"),
   last_name: z.string().min(1, "Last name is required"),
   email: z.string().email(),
@@ -46,5 +47,5 @@ const joinUsFormSchema = z.object({
   goal_statement: z.string().optional(),
 });
 
-export type JoinUsFormData = z.infer<typeof joinUsFormSchema>;
-export { joinUsFormSchema };
+export type RegistrationData = z.infer<typeof RegistrationSchema>;
+export { RegistrationSchema };
