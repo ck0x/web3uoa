@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { RegistrationService } from "../../services/registrations/registrations-service";
 
 export enum UniversityType {
   UOA = "UOA",
