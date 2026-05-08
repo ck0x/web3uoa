@@ -31,6 +31,16 @@ function getUniversitySelect() {
   return universitySelect;
 }
 
+function getConditionalComboboxes() {
+  const [, degreeSelect, facultySelect] = screen.getAllByRole("combobox");
+
+  if (!degreeSelect || !facultySelect) {
+    throw new Error("Expected degree and faculty selects to be rendered");
+  }
+
+  return { degreeSelect, facultySelect };
+}
+
 async function selectUniversity(
   user: ReturnType<typeof userEvent.setup>,
   value: "UOA" | "AUT" | "OTHER" | "NONE",
@@ -129,6 +139,64 @@ describe("RegistrationForm", () => {
     await user.type(studentId, "12ab34!@#");
 
     expect(studentId.value).toBe("1234");
+  });
+
+  it("requires the university-specific fields when UOA is selected", async () => {
+    const user = userEvent.setup();
+    renderForm();
+
+    await user.type(screen.getByPlaceholderText(/first name/i), "Ada");
+    await user.type(screen.getByPlaceholderText(/last name/i), "Lovelace");
+    await user.type(screen.getByPlaceholderText(/email/i), "ada@example.com");
+    await selectUniversity(user, "UOA");
+
+    await user.click(screen.getByRole("button", { name: /submit/i }));
+
+    expect(mockedRegistrationService.isEmailTaken).not.toHaveBeenCalled();
+    expect(mockedRegistrationService.submitRegistration).not.toHaveBeenCalled();
+    expect(screen.getByText(/UPI is required/i)).toBeInTheDocument();
+    expect(screen.getByText(/Student ID is required/i)).toBeInTheDocument();
+    expect(screen.getByText(/Degree type is required/i)).toBeInTheDocument();
+    expect(screen.getByText(/Faculty is required/i)).toBeInTheDocument();
+  });
+
+  it("clears fields that disappear when switching from UOA to NONE", async () => {
+    const user = userEvent.setup();
+    mockedRegistrationService.isEmailTaken.mockResolvedValue(false);
+    mockedRegistrationService.submitRegistration.mockResolvedValue(undefined);
+    const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => undefined);
+
+    renderForm();
+
+    await user.type(screen.getByPlaceholderText(/first name/i), "Ada");
+    await user.type(screen.getByPlaceholderText(/last name/i), "Lovelace");
+    await user.type(screen.getByPlaceholderText(/email/i), "ada@example.com");
+    await selectUniversity(user, "UOA");
+
+    await user.type(screen.getByPlaceholderText(/upi/i), "1234567");
+    await user.type(screen.getByPlaceholderText(/student id/i), "987654");
+
+    const { degreeSelect, facultySelect } = getConditionalComboboxes();
+    await user.selectOptions(degreeSelect, "FIRST_YEAR");
+    await user.selectOptions(facultySelect, "SCIENCE");
+
+    await selectUniversity(user, "NONE");
+    await user.click(screen.getByRole("button", { name: /submit/i }));
+
+    expect(mockedRegistrationService.isEmailTaken).toHaveBeenCalledWith(
+      "ada@example.com",
+    );
+    expect(mockedRegistrationService.submitRegistration).toHaveBeenCalledWith(
+      expect.objectContaining({
+        university: "NONE",
+        upi: null,
+        student_id: null,
+        degree_type: null,
+        faculty: null,
+        university_other: null,
+      }),
+    );
+    expect(alertSpy).toHaveBeenCalledWith("Form submitted successfully!");
   });
 
   it("stops submission when the email is already taken", async () => {

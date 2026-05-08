@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
   RegistrationSchema,
@@ -30,11 +31,60 @@ export function RegistrationForm() {
     formState: { errors },
     reset,
     watch,
+    setValue,
+    clearErrors,
   } = useForm<RegistrationData>({
     resolver: zodResolver(RegistrationSchema),
   });
 
   const selectedUniversity = watch("university");
+
+  useEffect(() => {
+    const clearField = (
+      field:
+        | "university_other"
+        | "upi"
+        | "student_id"
+        | "degree_type"
+        | "faculty",
+    ) => {
+      clearErrors(field);
+      setValue(field, null as never, {
+        shouldDirty: true,
+        shouldTouch: false,
+        shouldValidate: false,
+      });
+    };
+
+    if (!selectedUniversity) {
+      return;
+    }
+
+    if (selectedUniversity === UniversityType.None) {
+      clearField("university_other");
+      clearField("upi");
+      clearField("student_id");
+      clearField("degree_type");
+      clearField("faculty");
+      return;
+    }
+
+    if (selectedUniversity === UniversityType.UOA) {
+      clearField("university_other");
+      return;
+    }
+
+    if (selectedUniversity === UniversityType.AUT) {
+      clearField("university_other");
+      clearField("upi");
+      return;
+    }
+
+    if (selectedUniversity === UniversityType.Other) {
+      clearField("upi");
+      clearField("student_id");
+    }
+  }, [clearErrors, selectedUniversity, setValue]);
 
   /**
    * Handles the form submission.
