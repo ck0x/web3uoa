@@ -26,23 +26,21 @@ export const RegistrationService = {
   },
 
   /**
-   * Checks if an email is already taken in the registrations table.
+   * Checks if an email is already taken using the Supabase RPC function.
    *
    * @param {string} email - The email address to check.
-   * @returns {Promise<boolean>} Returns true if the email is available, false if it is already taken.
+   * @returns {Promise<boolean>} Returns true if the email is taken, false if it is available.
    * @throws Will throw an error if the database operation fails.
    */
   isEmailTaken: async (email: string) => {
-    const { data, error } = await supabase
-      .from("registrations")
-      .select("email")
-      .eq("email", email)
-      .maybeSingle();
+    const { data, error } = await supabase.rpc("is_email_registered", {
+      search_email: email,
+    });
 
     if (error) {
       throw error;
     }
 
-    return data === null;
+    return Boolean(data);
   },
 };
