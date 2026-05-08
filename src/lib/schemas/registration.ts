@@ -33,6 +33,8 @@ const normalizeEmpty = (value: unknown) => {
   return value;
 };
 
+// Keep this as a single object schema so empty selects produce friendly
+// validation messages, while superRefine handles the university-specific rules.
 const RegistrationSchema = z
   .object({
     first_name: z.string().trim().min(1, "First name is required"),
@@ -57,10 +59,12 @@ const RegistrationSchema = z
     goal_statement: z.string().trim().nullable().optional(),
   })
   .superRefine((data, ctx) => {
+    // None is a valid option, but other fields should not be present, skip the rest
     if (data.university === UniversityType.None) {
       return;
     }
 
+    // Other is a valid option, but university_other is required
     if (data.university === UniversityType.Other && !data.university_other) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
@@ -69,6 +73,7 @@ const RegistrationSchema = z
       });
     }
 
+    // UOA and AUT require upi and student_id, respectively
     if (data.university === UniversityType.UOA && !data.upi) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
@@ -96,6 +101,7 @@ const RegistrationSchema = z
       }
     }
 
+    // Degree type and faculty are required ( skipped None already )
     if (!data.degree_type) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
