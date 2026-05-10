@@ -58,13 +58,7 @@ export function Navbar() {
             className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
             asChild
           >
-            <Link
-              href="https://forms.gle/vzRb7t46SPBUwi7v8"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join Us
-            </Link>
+            <Link href="/pages/join-us">Join Us</Link>
           </Button>
         </div>
 
