@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && npm run prisma:sync && next build",
-    "prisma:sync": "node scripts/prisma-sync.mjs",
+    "build": "prisma generate && bun run prisma:sync && next build",
+    "prisma:sync": "bun scripts/prisma-sync.mjs",
     "postinstall": "prisma generate",
     "lint": "eslint .",
     "preview": "vite preview",
