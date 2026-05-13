@@ -3,8 +3,8 @@ import { Sun, Moon } from 'lucide-react'
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useAccount } from "wagmi";
-import { isAllowedAdminAddress } from "@/lib/admin-auth";
+//import { useAccount } from "wagmi";
+//import { isAllowedAdminAddress } from "@/lib/admin-auth";
 import { useWallet } from "@/hooks/use-wallet";
 import { WalletButton } from "@/components/wallet-button";
 import { usePathname } from "next/navigation";
@@ -24,7 +24,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [theme, setTheme] = useState("light");
   const [mounted, setMounted] = useState(false);
-  const { address } = useAccount();
+  //const { address } = useAccount();
 
   useEffect(() => {
     setMounted(true);
@@ -174,14 +174,14 @@ export function Navbar() {
               </Link>
             )}
             {/* Comment it out, not sure should i delete this */}
-            <div
+            {/* <div
               className="flex justify-center py-2"
               onClickCapture={() => setMobileOpen(false)}
-            >
-              <WalletButton />
-            </div>
+            > */}
+              {/* <WalletButton /> */}
+            {/* </div> */}
 
-            <Button
+            {/* <Button
               size="lg"
               className="rounded-xl font-bold mt-4 w-full h-12"
               asChild
@@ -192,8 +192,8 @@ export function Navbar() {
                 rel="noopener noreferrer"
               >
                 Join Us
-              </Link>
-            </Button>
+              </Link> 
+            </Button>*/}
           </div>
         </div>
       )}
