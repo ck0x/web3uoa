@@ -112,6 +112,7 @@ export function Navbar() {
 
             <WalletButton />
           </Button>
+          </div>
 
           {/* Comment it out, not sure should i delete this */}
           {/*<Button
