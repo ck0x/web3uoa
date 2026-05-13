@@ -29,7 +29,7 @@ export function Navbar() {
     rounded-full text-white shadow-lg whitespace-nowrap">
       <div className="container h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center group flex-shrink-0">
+        <Link href="#" className="flex items-center group flex-shrink-0">
           <img
             src="/logo/web3uoa_logo.png"
             alt="WEB3UOA"
