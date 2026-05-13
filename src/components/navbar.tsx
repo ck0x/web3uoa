@@ -5,6 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useAccount } from "wagmi";
 import { isAllowedAdminAddress } from "@/lib/admin-auth";
+import { useWallet } from "@/hooks/use-wallet";
+import { WalletButton } from "@/components/wallet-button";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -51,7 +55,10 @@ export function Navbar() {
     }, 300);
   }, [theme]);
 
-  const isAdmin = mounted && isAllowedAdminAddress(address);
+  //const isAdmin = mounted && isAllowedAdminAddress(address);
+  const { isAdmin } = useWallet();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
     <nav className="absolute z-50 bg-nav-bg border-b border-white/10
@@ -62,33 +69,33 @@ export function Navbar() {
       <div className="h-14 sm:h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8 gap-4">
 
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group flex-shrink-0">
+        <Link href="#" className="flex items-center gap-2 group flex-shrink-0">
           <img
             src="/logo/web3uoa_logo.png"
             alt="WEB3UOA"
             className="w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-500 group-hover:scale-110 drop-shadow-sm"
           />
           <span className="text-nav-text text-lg sm:text-xl font-black tracking-tight font-russo">WEB3UOA</span>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden lg:flex items-center gap-5 xl:gap-15 flex-shrink-0 ml-auto">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="nav-bar-text text-base font-semibold tracking-wide transition-colors duration-100 hover:text-nav-text-hover whitespace-nowrap"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           {isAdmin && (
-            <a
+            <Link
               href="/admin"
               className="text-sm font-bold tracking-wide transition-colors text-yellow-500 hover:text-yellow-400 whitespace-nowrap"
             >
               Admin Panel
-            </a>
+            </Link>
           )}
 
           {/* toggle_theme button */}
@@ -102,22 +109,20 @@ export function Navbar() {
               <Sun className="absolute inset-0 size-6 transition-opacity duration-300" style={{ opacity: theme === "light" ? 1 : 0 }} />
               <Moon className="absolute inset-0 size-6 transition-opacity duration-300" style={{ opacity: theme === "light" ? 0 : 1 }} />
             </span>
+
+            <WalletButton />
           </Button>
 
           {/* Comment it out, not sure should i delete this */}
           {/*<Button
+          
+          <Button
             size="sm"
             className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
             asChild
           >
-            
-              href="https://forms.gle/vzRb7t46SPBUwi7v8"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join Us
-            </a>
-          </Button>*/}
+            <Link href="/pages/join-us">Join Us</Link>
+          </Button>
         </div>
 
         {/* Mobile menu button */}
@@ -149,28 +154,30 @@ export function Navbar() {
         <div className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-nav-bg backdrop-blur-md border border-white/10 shadow-lg rounded-2xl overflow-hidden">
           <div className="px-6 py-5 flex flex-col gap-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
                 className="text-nav-text text-base font-semibold tracking-wide py-2.5 px-3 rounded-lg transition-all hover:bg-white/10 hover:text-primary"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             {isAdmin && (
-              <a
+              <Link
                 href="/admin"
                 onClick={() => setMobileOpen(false)}
                 className="text-base font-bold text-yellow-500 hover:text-yellow-400 py-2.5 px-3 rounded-lg transition-colors hover:bg-white/10"
               >
                 Admin Panel
-              </a>
+              </Link>
             )}
             {/* Comment it out, not sure should i delete this */}
-            {/*
-            <div className="flex justify-center py-2">
-              <appkit-button balance="hide" />
+            <div
+              className="flex justify-center py-2"
+              onClickCapture={() => setMobileOpen(false)}
+            >
+              <WalletButton />
             </div>
 
             <Button
@@ -178,14 +185,14 @@ export function Navbar() {
               className="rounded-xl font-bold mt-4 w-full h-12"
               asChild
             >
-              
+              <Link
                 href="https://forms.gle/vzRb7t46SPBUwi7v8"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Join Us
-              </a>
-            </Button>*/}
+              </Link>
+            </Button>
           </div>
         </div>
       )}
