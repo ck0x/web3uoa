@@ -1,9 +1,11 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useAccount } from "wagmi";
-import { isAllowedAdminAddress } from "@/lib/admin-auth";
+import { useWallet } from "@/hooks/use-wallet";
+import { WalletButton } from "@/components/wallet-button";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -18,14 +20,9 @@ const navLinks = [
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { address } = useAccount();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isAdmin = mounted && isAllowedAdminAddress(address);
+  const { isAdmin } = useWallet();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
     <nav className="absolute z-50 bg-[#404246]/60 backdrop-blur-md border-b border-white/10 flex justify-between items-center px-8 w-[80%] left-1/2 translate-x-[-50%] top-[5%] 
@@ -39,43 +36,35 @@ export function Navbar() {
             className="w-10 h-10 transition-transform duration-500 group-hover:scale-110 drop-shadow-sm"
           />
           <span className="text-xl font-black tracking-tight">WEB3UOA</span>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-15 absolute right-[-14%] -translate-x-1/2">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-white text-base font-semibold tracking-wide transition-all hover:text-primary"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           {isAdmin && (
-            <a
+            <Link
               href="/admin"
               className="text-sm font-bold tracking-wide transition-colors text-yellow-500 hover:text-yellow-400"
             >
               Admin Panel
-            </a>
+            </Link>
           )}
-
-          {/* Comment it out, not sure should i delete this */}
-          {/*<Button
+          <WalletButton />
+          <Button
             size="sm"
             className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
             asChild
           >
-            <a
-              href="https://forms.gle/vzRb7t46SPBUwi7v8"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join Us
-            </a>
-          </Button>*/}
-
+            <Link href="/pages/join-us">Join Us</Link>
+          </Button>
         </div>
 
         {/* Mobile menu button */}
@@ -97,27 +86,29 @@ export function Navbar() {
         <div className="md:hidden absolute top-full left-0 right-0 bg-[#404246]/60 backdrop-blur-md border-b border-border shadow-lg rounded-md">
           <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
                 className="text-white text-base font-semibold tracking-wide transition-all hover:text-primary"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             {isAdmin && (
-              <a
+              <Link
                 href="/admin"
                 onClick={() => setMobileOpen(false)}
                 className="text-base font-bold text-yellow-500 hover:text-yellow-400 py-2 transition-colors border-b border-border/50"
               >
                 Admin Panel
-              </a>
+              </Link>
             )}
-            {/*
-            <div className="flex justify-center py-2">
-              <appkit-button balance="hide" />
+            <div
+              className="flex justify-center py-2"
+              onClickCapture={() => setMobileOpen(false)}
+            >
+              <WalletButton />
             </div>
             
             <Button
@@ -125,14 +116,14 @@ export function Navbar() {
               className="rounded-xl font-bold mt-4 w-full h-12"
               asChild
             >
-              <a
+              <Link
                 href="https://forms.gle/vzRb7t46SPBUwi7v8"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Join Us
-              </a>
-            </Button>*/}
+              </Link>
+            </Button>
           </div>
         </div>
       )}
