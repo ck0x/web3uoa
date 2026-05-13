@@ -9,8 +9,6 @@ LABEL fly_launch_runtime="Next.js"
 # Next.js app lives here
 WORKDIR /app
 
-# Set production environment
-ENV NODE_ENV="production"
 ENV NEXT_TELEMETRY_DISABLED="1"
 
 
@@ -30,6 +28,13 @@ RUN bun install --frozen-lockfile
 # Copy application code
 COPY . .
 
+# Public admin configuration must be present at build time because Next.js
+# inlines NEXT_PUBLIC_* values into the client bundle during next build.
+ARG NEXT_PUBLIC_ADMIN_ADDRESS
+ARG NEXT_PUBLIC_ADMIN_ADDRESSES
+ENV NEXT_PUBLIC_ADMIN_ADDRESS="${NEXT_PUBLIC_ADMIN_ADDRESS}"
+ENV NEXT_PUBLIC_ADMIN_ADDRESSES="${NEXT_PUBLIC_ADMIN_ADDRESSES}"
+
 # Build application (runs prisma generate + prisma:sync + next build via package.json)
 RUN bun run build
 
@@ -39,6 +44,8 @@ RUN bun install --frozen-lockfile --production
 
 # Final stage for app image
 FROM base
+
+ENV NODE_ENV="production"
 
 # Copy built application
 COPY --from=build /app /app
