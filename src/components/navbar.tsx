@@ -109,14 +109,14 @@ export function Navbar() {
               <Sun className="absolute inset-0 size-6 transition-opacity duration-300" style={{ opacity: theme === "light" ? 1 : 0 }} />
               <Moon className="absolute inset-0 size-6 transition-opacity duration-300" style={{ opacity: theme === "light" ? 0 : 1 }} />
             </span>
-
-            <WalletButton />
+            {/* Comment it out, not sure should i delete this */}
+            {/*<WalletButton />*/}
           </Button>
           </div>
 
           {/* Comment it out, not sure should i delete this */}
           {/*<Button
-          
+
           <Button
             size="sm"
             className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
@@ -124,7 +124,7 @@ export function Navbar() {
           >
             <Link href="/pages/join-us">Join Us</Link>
           </Button>
-        </div>
+        </div>*/}
 
         {/* Mobile menu button */}
         <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
