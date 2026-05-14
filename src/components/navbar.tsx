@@ -3,20 +3,21 @@ import { Sun, Moon } from 'lucide-react'
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-//import { useAccount } from "wagmi";
-//import { isAllowedAdminAddress } from "@/lib/admin-auth";
-import { useWallet } from "@/hooks/use-wallet";
-import { WalletButton } from "@/components/wallet-button";
-import { usePathname } from "next/navigation";
+import { useAccount } from "wagmi";
+import { isAllowedAdminAddress } from "@/lib/admin-auth";
 import Link from "next/link";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Events", href: "#events" },
-  { label: "Partners", href: "#partners" },
+  { label: "About", href: "/pages/about" },
+  { label: "Events", href: "/pages/events" },
+  { label: "Partners", href: "/pages/partners" },
+  // { label: "Claim your Web3 ID!", href: "/pages/claim-id", isCTA: true },
+  // { label: "About", href: "#about" },
+  // { label: "Events", href: "#events" },
+  // { label: "Partners", href: "#partners" },
   { label: "Search", href: "#search" }, // TODO: add search page
   { label: "Join Us", href: "#join_us" }, // TODO: add Us
-  { label: "Connect Wallet", href: "#connect_wallet" }, // TODO: add wallet connection
+  { label: "Connect Wallet", href: "/pages/claim-id" }, // TODO: add wallet connection
   //{ label: "Claim your Web3 ID!", href: "#identity", isCTA: true }  // not sure if need 
 ];
 
@@ -24,7 +25,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [theme, setTheme] = useState("light");
   const [mounted, setMounted] = useState(false);
-  //const { address } = useAccount();
+  const { address } = useAccount();
 
   useEffect(() => {
     setMounted(true);
@@ -55,10 +56,7 @@ export function Navbar() {
     }, 300);
   }, [theme]);
 
-  //const isAdmin = mounted && isAllowedAdminAddress(address);
-  const { isAdmin } = useWallet();
-  const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isAdmin = mounted && isAllowedAdminAddress(address);
 
   return (
     <nav className="absolute z-50 bg-nav-bg border-b border-white/10
@@ -69,7 +67,7 @@ export function Navbar() {
       <div className="h-14 sm:h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8 gap-4">
 
         {/* Logo */}
-        <Link href="#" className="flex items-center gap-2 group flex-shrink-0">
+        <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
           <img
             src="/logo/web3uoa_logo.png"
             alt="WEB3UOA"
@@ -109,25 +107,25 @@ export function Navbar() {
               <Sun className="absolute inset-0 size-6 transition-opacity duration-300" style={{ opacity: theme === "light" ? 1 : 0 }} />
               <Moon className="absolute inset-0 size-6 transition-opacity duration-300" style={{ opacity: theme === "light" ? 0 : 1 }} />
             </span>
-            {/* Comment it out, not sure should i delete this */}
-            {/*<WalletButton />*/}
           </Button>
-          </div>
 
           {/* Comment it out, not sure should i delete this */}
           {/*<Button
-
-          <Button
             size="sm"
             className="rounded-xl px-6 py-5 font-bold shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
             asChild
           >
-            <Link href="/pages/join-us">Join Us</Link>
-          </Button>
-        </div>*/}
-
+            
+              href="https://forms.gle/vzRb7t46SPBUwi7v8"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join Us
+            </a>
+          </Button>*/}
+        </div>
         {/* Mobile menu button */}
-        <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
+        <div className="xl:hidden flex items-center gap-2 flex-shrink-0">
           <Button
             size="sm"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -173,27 +171,6 @@ export function Navbar() {
                 Admin Panel
               </Link>
             )}
-            {/* Comment it out, not sure should i delete this */}
-            {/* <div
-              className="flex justify-center py-2"
-              onClickCapture={() => setMobileOpen(false)}
-            > */}
-              {/* <WalletButton /> */}
-            {/* </div> */}
-
-            {/* <Button
-              size="lg"
-              className="rounded-xl font-bold mt-4 w-full h-12"
-              asChild
-            >
-              <Link
-                href="https://forms.gle/vzRb7t46SPBUwi7v8"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Join Us
-              </Link> 
-            </Button>*/}
           </div>
         </div>
       )}
