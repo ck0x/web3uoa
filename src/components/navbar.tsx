@@ -125,7 +125,7 @@ export function Navbar() {
           </Button>*/}
         </div>
         {/* Mobile menu button */}
-        <div className="xl:hidden flex items-center gap-2 flex-shrink-0">
+        <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
           <Button
             size="sm"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
